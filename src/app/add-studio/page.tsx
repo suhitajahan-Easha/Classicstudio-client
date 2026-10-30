@@ -45,34 +45,24 @@ const AddStudiopage = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const rdata = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries());
 
-    // //jwt in client
-    // const {data,error}=await authClient.token()
-    // const token =data?.token
+    
 
     //api before jwt
-    //  const res =await fetch('http://localhost:8000/add-destination',{
-    //         method:'POST',
-    //         headers:{
-    //              'Content-Type':'application/json',
-    //         },
-    //         body:JSON.stringify(data)
-    //     })
-    ///api after jwt
-    // const res =await fetch('http://localhost:8000/add-destination',{
-    //         method:'POST',
-    //         headers:{
-    //              'Content-Type':'application/json',
-    //              authorization:`Bearer ${token}`
-    //         },
-    //         body:JSON.stringify(rdata)
-    //     })
-    //     const result=await res.json()
-    //     console.log(result)
+     const res =await fetch('http://localhost:5000/add-studio',{
+            method:'POST',
+            headers:{
+                 'Content-Type':'application/json',
+            },
+            body:JSON.stringify(data)
+        })
+   
+        const result=await res.json()
+        console.log(result)
 
-    // console.log("Form data:", data);
-    // console.table(data);
+    console.log("Form data:", data);
+    console.table(data);
   };
 
   return (
@@ -285,7 +275,7 @@ const AddStudiopage = () => {
               </section>
 
               {/* Read-only User Information */}
-              <section className="border-t border-[#EEEEEE] pt-5">
+              {/* <section className="border-t border-[#EEEEEE] pt-5">
                 <h2 className="text-base font-semibold text-[#171717]">
                   Owner Information
                 </h2>
@@ -324,7 +314,7 @@ const AddStudiopage = () => {
                     />
                   </div>
                 </div>
-              </section>
+              </section> */}
 
               {/* Action Buttons */}
               <div className="flex flex-col-reverse justify-end gap-3 border-t border-[#EEEEEE] pt-5 sm:flex-row">
