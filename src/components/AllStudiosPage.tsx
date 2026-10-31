@@ -2,6 +2,7 @@
 
 import StudioCard from "@/components/Shared/Studiocard";
 import { Studio } from "@/lib/type";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -38,9 +39,9 @@ export default function AllStudiosPage({ category = "All" }: Props) {
 
       <div className="mb-8 flex flex-wrap gap-3">
         {categories.map((item) => (
-          <a key={item} href={item === "All" ? "/studios" : `/studios/category/${item.toLowerCase()}`} className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${selectedCategory === item ? "bg-red-600 text-white" : "border border-gray-200 bg-white text-neutral-700 hover:border-red-600 hover:text-red-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"}`}>
+          <Link key={item} href={item === "All" ? "/studios" : `/studios/category/${item.toLowerCase()}`} className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${selectedCategory === item ? "bg-red-600 text-white" : "border border-gray-200 bg-white text-neutral-700 hover:border-red-600 hover:text-red-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"}`}>
             {item}
-          </a>
+          </Link>
         ))}
       </div>
 
