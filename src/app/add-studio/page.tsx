@@ -32,6 +32,7 @@ const fieldClass =
 const AddStudiopage = () => {
    const { data: session } = authClient.useSession();
    const user = session?.user;
+   console.log(user?.name)
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -44,6 +45,7 @@ const AddStudiopage = () => {
       image: user?.image,
 
     };
+    
 
     const res = await fetch("http://localhost:5000/add-studio", {
       method: "POST",
@@ -259,53 +261,23 @@ const AddStudiopage = () => {
                     id="overview"
                     name="overview"
                     placeholder="Describe your studio, its atmosphere, available equipment, ideal uses, and special features..."
-                    className="min-h-32 resize-y rounded-md border border-[#E5E5E5] bg-white px-3 py-3 text-[13px] shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15"
+                    className="min-h-28 resize-y rounded-md border border-[#E5E5E5] bg-white px-3 py-3 text-[13px] shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15"
                     required
                   />
                 </div>
               </section>
 
-              {/* Read-only User Information */}
-              {/* <section className="border-t border-[#EEEEEE] pt-5">
-                <h2 className="text-base font-semibold text-[#171717]">
-                  Owner Information
+              
+              <section className=" text-red-400">
+                <h2 className="text-base font-semibold text-[#171717]"> READ ONLY
                 </h2>
-
-                <p className="mb-4 mt-1 text-xs text-[#737373]">
-                  Your account details will appear here.
-                </p>
-
-                <div className="space-y-4">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="userName" className={labelClass}>
-                      Full Name
-                    </Label>
-
-                    <Input
-                      id="userName"
-                      name="userName"
-                      placeholder="Your name"
-                      readOnly
-                      className={`${fieldClass} cursor-not-allowed bg-[#F5F5F5] text-[#737373]`}
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="userEmail" className={labelClass}>
-                      Email Address
-                    </Label>
-
-                    <Input
-                      id="userEmail"
-                      name="userEmail"
-                      type="email"
-                      placeholder="Your email address"
-                      readOnly
-                      className={`${fieldClass} cursor-not-allowed bg-[#F5F5F5] text-[#737373]`}
-                    />
-                  </div>
+                <div className=" flex gap-2 font-semibold">
+                  <h1>Name:{user?.name}</h1>
+                  <h1 >
+                    Email:{user?.email}
+                  </h1>
                 </div>
-              </section> */}
+              </section>
 
               {/* Action Buttons */}
               <div className="flex flex-col-reverse justify-end gap-3 border-t border-[#EEEEEE] pt-5 sm:flex-row">
@@ -321,8 +293,7 @@ const AddStudiopage = () => {
 
                 <Button
                   type="submit"
-                  className="h-10 gap-2 rounded-md bg-red-600 px-5 text-[13px] font-medium text-white transition-colors hover:bg-red-700"
-                >
+                  className="h-10 gap-2 rounded-md bg-red-600 px-5 text-[13px] font-medium text-white transition-colors hover:bg-red-700" >
                   <Plus className="size-4" />
                   Add Studio
                 </Button>
