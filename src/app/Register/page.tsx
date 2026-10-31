@@ -141,234 +141,7 @@
 //   )
 // }
 
-// "use client";
 
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Link from "next/link";
-
-// import { Button } from "@/components/ui/button";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-// } from "@/components/ui/card";
-
-// import {
-//   Field,
-//   FieldDescription,
-//   FieldGroup,
-//   FieldLabel,
-//   FieldSeparator,
-// } from "@/components/ui/field";
-
-// import { Input } from "@/components/ui/input";
-// import { authClient } from "@/lib/auth-client";
-// import { toast } from "react-toastify";
-
-// export default function RegisterPage() {
-//   const router = useRouter();
-
-//   const [loading, setLoading] = useState(false);
-//   const [password, setPassword] = useState("");
-
-//   // Password validation
-//   const hasUppercase = /[A-Z]/.test(password);
-//   const hasLowercase = /[a-z]/.test(password);
-//   const hasMinLength = password.length >= 6;
-
-//   const isPasswordValid =
-//     hasUppercase && hasLowercase && hasMinLength;
-
-//   const handleEmailSignUp = async (
-//     e: React.SubmitEvent<HTMLFormElement>
-//   ) => {
-//     e.preventDefault();
-
-//     // Prevent registration with invalid password
-//     if (!isPasswordValid) {
-//       toast.error("Please fulfill all password requirements.");
-//       return;
-//     }
-
-//      const formData = new FormData(e.target)
-//      const user = Object.fromEntries(formData.entries()) as {name:string, image: string, email:string, password:string}
-// ;
-
-   
-
-//     try {
-//       setLoading(true);
-
-//       const { data, error } = await authClient.signUp.email({
-//         ...user,
-//       });
-
-//       if (error) {
-//         toast.error(error.message || "Registration failed!");
-//         return;
-//       }
-
-//       toast.success("Registration successful!");
-//       router.push("/Login");
-//     } catch (error) {
-//       console.error(error);
-//       toast.error("Something went wrong. Please try again.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="mx-auto my-10 flex w-full max-w-md flex-col gap-6 px-4">
-//       <Card>
-//         <CardHeader className="text-center">
-//           <CardTitle className="text-2xl font-bold">
-//             Create an account
-//           </CardTitle>
-
-//           <CardDescription>
-//             Register to get started with ClassicStudio.
-//           </CardDescription>
-//         </CardHeader>
-
-//         <CardContent>
-//           <form onSubmit={handleEmailSignUp}>
-//             <FieldGroup>
-//               {/* Google Login Placeholder */}
-//               <Field>
-//                 <Button
-//                   variant="outline"
-//                   type="button"
-//                   className="w-full"
-//                   disabled
-//                 >
-//                   Continue with Google
-//                 </Button>
-//               </Field>
-
-//               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-//                 Or register with email
-//               </FieldSeparator>
-
-//               {/* Name */}
-//               <Field>
-//                 <FieldLabel htmlFor="name">Name</FieldLabel>
-
-//                 <Input
-//                   id="name"
-//                   type="text"
-//                   name="name"
-//                   placeholder="Your name"
-//                   required
-//                 />
-//               </Field>
-
-//               {/* Photo URL */}
-//               <Field>
-//                 <FieldLabel htmlFor="image">Photo URL</FieldLabel>
-
-//                 <Input
-//                   id="image"
-//                   type="url"
-//                   name="image"
-//                   placeholder="https://example.com/photo.jpg"
-//                   required
-//                 />
-//               </Field>
-
-//               {/* Email */}
-//               <Field>
-//                 <FieldLabel htmlFor="email">Email</FieldLabel>
-
-//                 <Input
-//                   id="email"
-//                   type="email"
-//                   name="email"
-//                   placeholder="m@example.com"
-//                   required
-//                 />
-//               </Field>
-
-//               {/* Password */}
-//               <Field>
-//                 <FieldLabel htmlFor="password">
-//                   Password
-//                 </FieldLabel>
-
-//                 <Input
-//                   id="password"
-//                   name="password"
-//                   type="password"
-//                   placeholder="Create a password"
-//                   value={password}
-//                   onChange={(e) => setPassword(e.target.value)}
-//                   required
-//                 />
-
-//                 {/* Live Password Requirements */}
-//                 <div className="mt-2 space-y-1 text-sm">
-//                   <p
-//                     className={
-//                       hasUppercase
-//                         ? "text-green-600"
-//                         : "text-muted-foreground"
-//                     }
-//                   >
-//                     {hasUppercase ? "✓" : "○"} At least one uppercase letter
-//                   </p>
-
-//                   <p
-//                     className={
-//                       hasLowercase
-//                         ? "text-green-600"
-//                         : "text-muted-foreground"
-//                     }
-//                   >
-//                     {hasLowercase ? "✓" : "○"} At least one lowercase letter
-//                   </p>
-
-//                   <p
-//                     className={
-//                       hasMinLength
-//                         ? "text-green-600"
-//                         : "text-muted-foreground"
-//                     }
-//                   >
-//                     {hasMinLength ? "✓" : "○"} Minimum 6 characters
-//                   </p>
-//                 </div>
-//               </Field>
-
-//               {/* Register Button */}
-//               <Field>
-//                 <Button
-//                   type="submit"
-//                   className="w-full"
-//                   disabled={loading}
-//                 >
-//                   {loading ? "Registering..." : "Register"}
-//                 </Button>
-
-//                 <FieldDescription className="text-center">
-//                   Already have an account?{" "}
-//                   <Link
-//                     href="/Login"
-//                     className="font-semibold text-red-600 hover:underline"
-//                   >
-//                     Login
-//                   </Link>
-//                 </FieldDescription>
-//               </Field>
-//             </FieldGroup>
-//           </form>
-//         </CardContent>
-//       </Card>
-//     </div>
-//   );
-// }
 
 "use client";
 
@@ -376,27 +149,19 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import {
-  Aperture,
-  ArrowLeft,
-  ArrowRight,
-  User,
-  Mail,
-  Image as ImageIcon,
-  Lock,
-  Check,
-} from "lucide-react";
-
+import {ArrowLeft,ArrowRight,User,Mail,Image as ImageIcon,Lock,Check,} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+
 
 export default function RegisterPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   // Password validation
   const hasUppercase = /[A-Z]/.test(password);
@@ -406,21 +171,14 @@ export default function RegisterPage() {
   const isPasswordValid =
     hasUppercase && hasLowercase && hasMinLength;
 
-  const handleEmailSignUp = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
-
     if (!isPasswordValid) {
       toast.error("Please fulfill all password requirements.");
       return;
     }
-
     const formData = new FormData(e.currentTarget);
-
-    const user = Object.fromEntries(
-      formData.entries()
-    ) as {
+    const user = Object.fromEntries(formData.entries() ) as {
       name: string;
       image: string;
       email: string;
@@ -450,90 +208,32 @@ export default function RegisterPage() {
       setLoading(false);
     }
   };
+  const handleGoogleLogin = async () => {
+      try {
+        setGoogleLoading(true);
+  
+        await authClient.signIn.social({
+          provider: "google",
+          callbackURL: "/",
+        });
+      } catch {
+        toast.error("Google login failed. Please try again.");
+        setGoogleLoading(false);
+      }
+    };
 
   return (
-    <main className="min-h-screen bg-white lg:grid lg:grid-cols-2">
+    <main className="w-ful mx-auto min-h-screen bg-white ">
 
       {/* LEFT BRANDING PANEL */}
-      <section className="relative hidden min-h-screen overflow-hidden bg-neutral-950 p-12 text-white lg:flex lg:flex-col lg:justify-between xl:p-16">
-
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1400"
-            alt="Creative studio workspace"
-            className="h-full w-full object-cover opacity-40"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-br from-neutral-950/95 via-neutral-950/70 to-red-950/60" />
-        </div>
-
-        {/* Logo */}
-        <div className="relative z-10">
-          <Link href="/" className="inline-flex items-center gap-3">
-            <div className="flex size-11 items-center justify-center rounded-xl bg-red-600">
-              <Aperture className="size-7 text-white" />
-            </div>
-
-            <span className="text-2xl font-extrabold tracking-tight">
-              classic<span className="text-red-500">studio</span>
-            </span>
-          </Link>
-        </div>
-
-        {/* Branding Content */}
-        <div className="relative z-10 max-w-xl">
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.3em] text-red-400">
-            A space for every creative mind
-          </p>
-
-          <h1 className="text-5xl font-bold leading-tight xl:text-6xl">
-            Great ideas need{" "}
-            <span className="block text-red-500">
-              the right space.
-            </span>
-          </h1>
-
-          <p className="mt-7 max-w-md text-base leading-8 text-neutral-300">
-            Discover inspiring studios, connect with creative spaces,
-            and bring your next project to life with ClassicStudio.
-          </p>
-
-          <div className="mt-10 flex items-center gap-4">
-            <div className="h-1 w-16 rounded-full bg-red-500" />
-            <span className="text-sm tracking-wide text-neutral-300">
-              Create. Collaborate. Inspire.
-            </span>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="relative z-10 flex items-center justify-between text-xs text-neutral-400">
-          <p>© 2026 ClassicStudio</p>
-          <p>Spaces for creators</p>
-        </div>
-      </section>
+      
 
       {/* RIGHT REGISTRATION FORM */}
-      <section className="flex min-h-screen flex-col px-6 py-8 sm:px-12 lg:justify-center lg:px-16 xl:px-20">
-
-        {/* Mobile Logo */}
-        <div className="mb-10 lg:hidden">
-          <Link href="/" className="inline-flex items-center gap-2">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-red-600 text-white">
-              <Aperture className="size-6" />
-            </div>
-
-            <span className="text-xl font-extrabold text-neutral-950">
-              classic<span className="text-red-600">studio</span>
-            </span>
-          </Link>
-        </div>
-
+      <section className="flex min-h-screen flex-col px-6 py-8 sm:px-12 lg:justify-center lg:px-16 xl:px-20">        
         <div className="mx-auto w-full max-w-md">
 
           {/* Back Link */}
-          <Link
-            href="/"
+          <Link href="/"
             className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600"
           >
             <ArrowLeft className="size-4" />
@@ -541,7 +241,7 @@ export default function RegisterPage() {
           </Link>
 
           {/* Heading */}
-          <div className="mb-7">
+          <div className="mb-7 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-red-600">
               Join ClassicStudio
             </p>
@@ -559,8 +259,8 @@ export default function RegisterPage() {
           {/* Google Placeholder */}
          <button
             type="button"
-            // onClick={handleGoogleLogin}
-            // disabled={googleLoading}
+            onClick={handleGoogleLogin}
+            disabled={googleLoading}
             className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3.5 text-sm font-semibold text-neutral-800 transition hover:border-red-300 hover:bg-red-50 disabled:opacity-60"
           >
             <svg viewBox="0 0 48 48" className="size-5">
@@ -570,9 +270,7 @@ export default function RegisterPage() {
               <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.89l-7.62-5.91c-2.12 1.43-4.85 2.3-8.28 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z"/>
             </svg>
 
-            {/* {googleLoading ? "Connecting..." : "Continue with Google"} */}
-            Continue with Google
-
+            {googleLoading ? "Connecting..." : "Continue with Google"}
           </button>
 
           {/* Separator */}

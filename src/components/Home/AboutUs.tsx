@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 export default function AboutUs() {
   return (
     <section id="about" className="bg-white px-6 py-20 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:px-4 lg:gap-16">
         {/* Left Side - About Content */}
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-red-600">

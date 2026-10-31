@@ -35,7 +35,7 @@ const guarantees = [
 export default function HostGuarantee() {
   return (
     <section className="bg-neutral-950 px-6 py-20 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl  lg:px-4">
         {/* Section heading */}
         <div className="mb-14 max-w-2xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">

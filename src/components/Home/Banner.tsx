@@ -1,156 +1,99 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
-
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
+import { ArrowRight, ChevronLeft, ChevronRight, Clapperboard } from "lucide-react";
 
 const slides = [
   {
-    image:
-      "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb",
-    subtitle: "FIND YOUR CREATIVE SPACE",
-    title: "Every great idea needs the right space.",
-    description:
-      "Discover inspiring studios designed for photography, filmmaking, podcasts, and everything in between.",
+    title: "Find the space. Create the magic.",
+    description: "Discover exceptional studios for photography, filmmaking, podcasts, and your next big idea.",
+    image: "/categories/first.avif",
+    label: "YOUR CREATIVE SPACE AWAITS",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
-    subtitle: "MAKE SOMETHING AMAZING",
-    title: "Your next creative project starts here.",
-    description:
-      "From professional studios to unique creative spaces, find the perfect setting for your next big idea.",
+    title: "Where your ideas come to life.",
+    description: "From professional recording rooms to creative production spaces, find the perfect studio for your vision.",
+    image: "/categories/2nd.avif",
+    label: "MADE FOR CREATIVITY",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
-    subtitle: "TURN YOUR SPACE INTO OPPORTUNITY",
-    title: "Have a space? Let it inspire others.",
-    description:
-      "Share your creative space with a community of makers, artists, and ambitious creators.",
+    title: "Your space. Your opportunity.",
+    description: "Share your studio with creators and turn your creative space into a new opportunity.",
+    image: "/categories/3rd.avif",
+    label: "HOST YOUR SPACE",
   },
 ];
 
-export default function Banner() {
+export default function HeroSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-neutral-950">
-      <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectFade]}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        loop
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{ clickable: true }}
-        navigation={{
-          prevEl: ".banner-prev",
-          nextEl: ".banner-next",
-        }}
-        className="h-[560px] sm:h-[620px] lg:h-[680px]"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={slide.title}>
-            <div className="relative flex h-full items-center">
-              {/* Background image */}
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                className="object-cover"
-              />
+    <section className="relative h-[560px] w-full overflow-hidden bg-neutral-950 sm:h-[620px] lg:h-[700px]">
+      {slides.map((slide, index) => (
+        <div key={slide.label} className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? "z-10 opacity-100" : "z-0 opacity-0"}`}>
+          <img src={slide.image} alt={slide.title} className="absolute inset-0 h-full w-full object-cover" />
 
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-              {/* Content */}
-              <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-8 sm:px-10 lg:px-16">
-                <div className="max-w-3xl">
-                  <p className="mb-5 flex items-center gap-3 text-xs font-bold tracking-[0.25em] text-red-500 sm:text-sm">
-                    <span className="h-[2px] w-8 bg-red-500" />
-                    {slide.subtitle}
-                  </p>
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-5 sm:px-10 lg:px-16 justify-center">
+            <div className="max-w-3xl text-white ">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+                <Clapperboard className="size-4 text-red-400" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] sm:text-xs">{slide.label}</span>
+              </div>
 
-                  <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
-                    {slide.title}
-                  </h1>
+              <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+                {slide.title}
+              </h1>
 
-                  <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg sm:leading-8">
-                    {slide.description}
-                  </p>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-neutral-200 sm:text-base sm:leading-8 lg:text-lg">
+                {slide.description}
+              </p>
 
-                  <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                    <Link
-                      href="/studios"
-                      className="inline-flex items-center justify-center gap-3 rounded-lg bg-red-600 px-7 py-4 text-sm font-semibold text-white transition hover:bg-red-700"
-                    >
-                      Explore Studios
-                      <ArrowRight className="size-4" />
-                    </Link>
+              <div className="mt-8 flex flex-col gap-3 min-[420px]:flex-row">
+                <Link href="/studios" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-700">
+                  Explore Studios
+                  <ArrowRight className="size-4" />
+                </Link>
 
-                    <Link
-                      href="/studios"
-                      className="inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-neutral-950"
-                    >
-                      Host Your Space
-                    </Link>
-                  </div>
-                </div>
+                <Link href="/add-studio" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white hover:text-neutral-950">
+                  Host Your Space
+                  <ArrowRight className="size-4" />
+                </Link>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      ))}
 
-      {/* Slider arrows */}
-      <button
-        type="button"
-        aria-label="Previous slide"
-        className="banner-prev absolute left-4 top-1/2 z-20 hidden size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition hover:bg-red-600 sm:flex lg:left-8"
-      >
-        <ChevronLeft className="size-5" />
-      </button>
-
-      <button
-        type="button"
-        aria-label="Next slide"
-        className="banner-next absolute right-4 top-1/2 z-20 hidden size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition hover:bg-red-600 sm:flex lg:right-8"
-      >
-        <ChevronRight className="size-5" />
-      </button>
-
-      {/* Pagination styling */}
-      <style jsx global>{`
-        .swiper-pagination {
-          bottom: 28px !important;
-        }
-
-        .swiper-pagination-bullet {
-          width: 9px;
-          height: 9px;
-          background: white;
-          opacity: 0.5;
-        }
-
-        .swiper-pagination-bullet-active {
-          width: 26px;
-          border-radius: 8px;
-          background: #dc2626;
-          opacity: 1;
-        }
-      `}</style>
+      <div className="absolute bottom-6 left-0 right-0 z-20 mx-auto flex w-full max-w-7xl items-center justify-center px-5 sm:px-10 lg:px-16">
+        <div className="flex items-center gap-5">
+          <button type="button" onClick={prevSlide} aria-label="Previous slide" className="flex size-10 items-center justify-center rounded-full border border-white/40 bg-black/20 text-white transition hover:bg-red-600">
+            <ChevronLeft className="size-5" />
+          </button>
+          <button type="button" onClick={nextSlide} aria-label="Next slide" className="flex size-10 items-center justify-center rounded-full border border-white/40 bg-black/20 text-white transition hover:bg-red-600">
+            <ChevronRight className="size-5" />
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

@@ -228,7 +228,7 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   return (
     <footer className="bg-[#111111] text-white">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8  lg:px-4">
 
         {/* Brand Introduction */}
         <div className="flex flex-col gap-8 border-b border-white/10 py-14 md:flex-row md:items-center md:justify-between md:py-16">

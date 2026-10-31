@@ -4,13 +4,10 @@ import CategorySection from "@/components/Home/CategorySection";
 import HostGuarantee from "@/components/Home/HostGuarantee";
 import HowBookingWorks from "@/components/Home/HowBookingWorks";
 
-
-
-
 export default function Home() {
   return (
    <div>
-    {/* <Banner></Banner> */}
+    <Banner></Banner>
     <CategorySection></CategorySection>
     <HowBookingWorks></HowBookingWorks>
     <AboutUs></AboutUs>
