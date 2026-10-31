@@ -6,6 +6,17 @@ import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+
+import Image from "next/image";
+import {
+  LayoutDashboard,
+  Plus,
+  Building2,
+  CalendarDays,
+  LogOut,
+  ChevronRight,
+  UserRound,
+} from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -122,7 +133,7 @@ export default function Navbar() {
         {user ? (
           <Popover>
             <PopoverTrigger
-            //   nativeButton={false}
+              //   nativeButton={false}
               render={
                 <button className="flex items-center gap-2 rounded-full border border-neutral-200 p-1 pr-3 transition hover:bg-neutral-50">
                   <Avatar className="size-9">
@@ -136,7 +147,7 @@ export default function Navbar() {
                 </button>
               }
             />
-            <PopoverContent align="end" className="w-64 p-2">
+            {/* <PopoverContent align="end" className="w-64 p-2">
               <div className="border-b border-neutral-100 px-3 py-3">
                 <p className="font-semibold text-neutral-900">{user?.name}</p>
                 <p className="text-xs text-neutral-500">{user?.email}</p>
@@ -165,7 +176,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="/MyBookings"
+                  href="/My-Bookings"
                   className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-red-50 hover:text-red-600"
                 >
                   My Bookings
@@ -178,6 +189,126 @@ export default function Navbar() {
                   variant="destructive"
                   className="w-full"
                 >
+                  Logout
+                </Button>
+              </div>
+            </PopoverContent> */}
+            <PopoverContent
+              align="end"
+              className="w-80 overflow-hidden rounded-xl border border-neutral-200 bg-white p-0 shadow-xl"
+            >
+              {/* Profile Header */}
+              <div className="border-b border-neutral-200 bg-neutral-50 p-5">
+                <div className="flex items-center gap-3">
+                  <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-red-100 shadow-sm">
+                    {user?.image ? (
+                      <Image
+                        src={user.image}
+                        alt={user.name || "User"}
+                        fill
+                        sizes="56px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <UserRound size={26} className="text-red-600" />
+                    )}
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-bold text-neutral-900">
+                      {user?.name || "User"}
+                    </p>
+                    <p className="truncate text-xs text-neutral-500">
+                      {user?.email}
+                    </p>
+                    <span className="mt-1.5 inline-block rounded-full bg-red-50 px-2 py-1 text-[10px] font-bold tracking-wider text-red-600">
+                      CLASSICSTUDIO MEMBER
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation */}
+              <div className="p-3">
+                <p className="px-3 pb-2 pt-1 text-[10px] font-bold tracking-[1.5px] text-neutral-400">
+                  WORKSPACE
+                </p>
+
+                <div className="space-y-1">
+                  <Link
+                    href="/dashboard"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-neutral-50"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600 transition group-hover:bg-red-50 group-hover:text-red-600">
+                      <LayoutDashboard size={18} />
+                    </span>
+                    <span className="flex-1 text-sm font-medium text-neutral-700 group-hover:text-red-600">
+                      Dashboard
+                    </span>
+                    <ChevronRight
+                      size={16}
+                      className="text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-red-600"
+                    />
+                  </Link>
+
+                  <Link
+                    href="/add-studio"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-neutral-50"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-50 text-red-600">
+                      <Plus size={19} />
+                    </span>
+                    <span className="flex-1 text-sm font-medium text-neutral-700 group-hover:text-red-600">
+                      Add New Studio
+                    </span>
+                    <ChevronRight
+                      size={16}
+                      className="text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-red-600"
+                    />
+                  </Link>
+
+                  <Link
+                    href="/my-listings"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-neutral-50"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600 transition group-hover:bg-red-50 group-hover:text-red-600">
+                      <Building2 size={18} />
+                    </span>
+                    <span className="flex-1 text-sm font-medium text-neutral-700 group-hover:text-red-600">
+                      My Studio Listings
+                    </span>
+                    <ChevronRight
+                      size={16}
+                      className="text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-red-600"
+                    />
+                  </Link>
+
+                  <Link
+                    href="/My-Bookings"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-neutral-50"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600 transition group-hover:bg-red-50 group-hover:text-red-600">
+                      <CalendarDays size={18} />
+                    </span>
+                    <span className="flex-1 text-sm font-medium text-neutral-700 group-hover:text-red-600">
+                      My Bookings
+                    </span>
+                    <ChevronRight
+                      size={16}
+                      className="text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-red-600"
+                    />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Logout */}
+              <div className="border-t border-neutral-200 p-3">
+                <Button
+                  onClick={handlesignout}
+                  variant="destructive"
+                  className="h-10 w-full justify-center gap-2 rounded-lg bg-red-600 font-semibold text-white hover:bg-red-700"
+                >
+                  <LogOut size={17} />
                   Logout
                 </Button>
               </div>

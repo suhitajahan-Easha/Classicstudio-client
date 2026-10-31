@@ -63,7 +63,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
       }
       
       toast.success("Studio updated successfully!");
-      setOpen(false);
+      
       router.refresh();   
       router.push("/my-listings");
     } catch (error) {
@@ -76,8 +76,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     "h-11 rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500";
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="gap-2"><Pencil size={16} /> Edit Studio</Button>} />
+    <Dialog open >
       <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border-0 bg-white p-0 sm:max-w-[550px]">
         {/* Header */}
         <DialogHeader className="border-b border-gray-100 px-6 py-5 text-left">
@@ -235,7 +234,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
               type="button"
               variant="outline"
               className="rounded-lg px-5"
-             onClick={() => setOpen(false)}
+             onClick={() => {window.location.href = "/my-listings"; }}
             >
               Cancel
             </Button>

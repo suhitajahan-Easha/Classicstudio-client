@@ -11,6 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 export default function BookWorkspace({ studio }: { studio: Studio }) {
   const [open, setOpen] = useState(false);
@@ -32,12 +33,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       bookingImage: user?.image,
 
       // Studio information
-      studioId: studio._id,
-      studioTitle: studio.title,
-      studioLocation: studio.location,
-      hourlyRate: studio.hourlyRate,
-      securityDeposit: studio.securityDeposit,
-
+      ...studio,
       // Host's information
       hostName: studio.username,
       hostEmail: studio.email,
@@ -60,6 +56,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
 
       const result = await res.json();
       console.log(result);
+      toast.success("booked")
 
       setOpen(false);
     } catch (error) {
