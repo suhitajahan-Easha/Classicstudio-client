@@ -7,6 +7,8 @@ export type Studio = {
   maxCapacity: string;
   location: string;
   imageUrl: string;
-  amenities: string;
+  amenities: string[];
   overview: string;
+  username:string;
+  email:string
 };

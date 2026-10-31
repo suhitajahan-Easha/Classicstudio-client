@@ -1,37 +1,27 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem,SelectTrigger, SelectValue,} from "@/components/ui/select";
 import { Plus, Trash, LoaderCircle } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 const amenitiesList = [
+  "Professional Lighting",
+  "Camera Equipment",
+  "Microphones",
+  "Soundproofing",
   "Wi-Fi",
   "Air Conditioning",
-  "Lighting Equipment",
-  "Sound System",
   "Parking",
-  "Green Screen",
-  "Makeup Room",
-  "Props",
-  "Restroom",
-  "Natural Lighting",
-  "Soundproofing",
   "Changing Room",
+  "Natural Lighting",
+  "Projector",
 ];
 
 const labelClass = "text-[13px] font-medium text-[#222222]";
@@ -39,27 +29,32 @@ const labelClass = "text-[13px] font-medium text-[#222222]";
 const fieldClass =
   "h-10 rounded-md border border-[#E5E5E5] bg-white px-3 text-[13px] shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15";
 
-
 const AddStudiopage = () => {
+   const { data: session } = authClient.useSession();
+   const user = session?.user;
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const data = {
+      ...Object.fromEntries(formData.entries()),
+      amenities: formData.getAll("amenities"),
+      username: user?.name,
+      email: user?.email,
+      image: user?.image,
 
-    
+    };
 
-    //api before jwt
-     const res =await fetch('http://localhost:5000/add-studio',{
-            method:'POST',
-            headers:{
-                 'Content-Type':'application/json',
-            },
-            body:JSON.stringify(data)
-        })
-   
-        const result=await res.json()
-        console.log(result)
+    const res = await fetch("http://localhost:5000/add-studio", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    console.log(result);
 
     console.log("Form data:", data);
     console.table(data);
@@ -68,7 +63,6 @@ const AddStudiopage = () => {
   return (
     <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 sm:px-7">
       <div className="mx-auto max-w-3xl">
-
         {/* Page Heading */}
         <div className="mb-8 text-center sm:mb-10">
           <div className="mx-auto mb-3 h-1 w-12 rounded-full bg-red-600" />
@@ -87,7 +81,6 @@ const AddStudiopage = () => {
 
           <CardContent className="p-5 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-
               {/* Studio Details */}
               <section>
                 <h2 className="mb-4 text-base font-semibold text-[#171717]">
@@ -95,7 +88,6 @@ const AddStudiopage = () => {
                 </h2>
 
                 <div className="space-y-4">
-
                   {/* Title */}
                   <div className="space-y-1.5">
                     <Label htmlFor="title" className={labelClass}>
@@ -126,14 +118,13 @@ const AddStudiopage = () => {
                       </SelectTrigger>
 
                       <SelectContent>
-                        <SelectItem value="photo-studio">Photo Studio</SelectItem>
+                        <SelectItem value="photo-studio"> Photo Studio </SelectItem>
                         <SelectItem value="film-stage">Film Stage</SelectItem>
-                        <SelectItem value="podcast-lounge">Podcast Lounge</SelectItem>
+                        <SelectItem value="podcast-lounge"> Podcast Lounge </SelectItem>
                         <SelectItem value="music-suite">Music Suite</SelectItem>
                         <SelectItem value="workshop">Workshop</SelectItem>
                         <SelectItem value="event-space">Event Space</SelectItem>
-                        <SelectItem value="creative-studio">Creative Studio</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="Dance-studio"> Dance Studio</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -159,7 +150,8 @@ const AddStudiopage = () => {
 
                     <div className="space-y-1.5">
                       <Label htmlFor="securityDeposit" className={labelClass}>
-                        Security Deposit ($) <span className="text-red-600">*</span>
+                        Security Deposit ($){" "}
+                        <span className="text-red-600">*</span>
                       </Label>
 
                       <Input
@@ -222,7 +214,6 @@ const AddStudiopage = () => {
                       required
                     />
                   </div>
-
                 </div>
               </section>
 
@@ -336,13 +327,13 @@ const AddStudiopage = () => {
                   Add Studio
                 </Button>
               </div>
-
             </form>
           </CardContent>
         </Card>
 
         <p className="mt-5 text-center text-xs text-[#A3A3A3]">
-          Fields marked with <span className="text-red-600">*</span> are required.
+          Fields marked with <span className="text-red-600">*</span> are
+          required.
         </p>
       </div>
     </main>
