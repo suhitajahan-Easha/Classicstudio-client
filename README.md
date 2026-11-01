@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ClassicStudio – Creative Studio Booking Platform
 
-## Getting Started
+**Live Website:** [Add your deployed client-side URL here]
 
-First, run the development server:
+ClassicStudio is a full-stack web application that allows users to explore creative studios, view studio details, and manage their studio bookings. Studio owners can manage their studio listings, while users can browse available spaces and submit booking requests through a simple and responsive interface.
+
+## ✨ Features
+
+- **User Authentication:** Secure user authentication using JSON Web Tokens (JWT).
+- **Studio Management:** Create, read, update, and delete studio listings with CRUD functionality.
+- **Studio Discovery:** Browse studio listings and view detailed information about each studio.
+- **Booking System:** Users can submit studio booking requests and view their reservations.
+- **My Bookings:** A private page where users can view their bookings and manage pending reservations.
+- **Dark Mode:** Switch between light and dark themes for a comfortable browsing experience.
+- **Responsive Design:** Optimized layouts for desktop, tablet, and mobile devices.
+- **User-Friendly Interface:** Clean design with intuitive navigation and interactive components.
+
+## 🛠️ Technology Stack
+
+**Frontend**
+- Next.js
+- React.js
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
+
+**Backend**
+- Node.js
+- Express.js
+- MongoDB
+- JSON Web Token (JWT)
+
+## ⚙️ Local Setup
+
+Follow these steps to run the project locally.
+
+**1. Clone the repository**
+
+```bash
+git clone YOUR_CLIENT_REPOSITORY_URL
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd classicstudio-client
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. Configure environment variables**
+
+Create a `.env.local` file in the project root and add the required configuration:
+
+```env
+NEXT_PUBLIC_API_URL=YOUR_BACKEND_API_URL
+```
+
+Add any other environment variables required by your project.
+
+**5. Start the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**6. Open the application**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+http://localhost:3000
+```
 
-## Learn More
+> Make sure the backend server is running and its environment variables are configured before testing API-dependent features.
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Examiner Test Credentials
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use the following credentials to explore the application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Field | Value |
+|---|---|
+| Email | ADD_EXAMINER_EMAIL |
+| Password | ADD_EXAMINER_PASSWORD |
 
-## Deploy on Vercel
+**Note:** Replace these placeholders with your actual test account credentials. Do not include your personal account password.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+classicstudio-client/
+├── public/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   └── ...
+├── .env.example
+├── package.json
+└── README.md
+```
+
+## 👩‍💻 Developer
+
+**Suhita Jahan Easha**
+
+- GitHub: https://github.com/suhitajahan-Easha
+- LinkedIn: https://www.linkedin.com/in/suhita-jahan-easha/
+
+---
+
+⭐ Thank you for visiting ClassicStudio! I hope you enjoy exploring the platform.

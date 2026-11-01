@@ -12,9 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function BookWorkspace({ studio }: { studio: Studio }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -63,12 +65,21 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       console.error("Booking error:", error);
     }
   };
+  
+  const handleOpenBooking = () => {
+    if (!session?.user) {
+      router.push("/LogIn");
+      return;
+    }
+
+    setOpen(true);
+  };
 
   return (
    
     <>
       <Button
-        onClick={() => setOpen(true)}
+        onClick={handleOpenBooking}
         className="w-full bg-red-600 text-white hover:bg-red-700"
       >
         Book Workspace Now

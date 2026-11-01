@@ -236,7 +236,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
               <div className="flex size-12 items-center justify-center rounded-xl bg-red-600">
-                <Clapperboard className="size-7 text-white" />
+                <Clapperboard size={26} strokeWidth={2} className=" text-white" />
               </div>
 
               <span className="text-2xl font-extrabold tracking-tight">
