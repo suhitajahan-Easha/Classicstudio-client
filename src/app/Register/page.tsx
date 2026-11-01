@@ -19,20 +19,17 @@
 // import Link from "next/link"
 // import { redirect } from "next/navigation"
 
-
 // export default function RegisterPage() {
 
 //     const handleEmailSignUp = async (e:React.SubmitEvent<HTMLElement>) => {
 
 //         e.preventDefault()
 
-        // const formData = new FormData(e.target)
-        // const user = Object.fromEntries(formData.entries()) as {name:string, image: string, email:string, password:string}
-
-  
+// const formData = new FormData(e.target)
+// const user = Object.fromEntries(formData.entries()) as {name:string, image: string, email:string, password:string}
 
 //         const {data, error} = await authClient.signUp.email({
-//             ...user, 
+//             ...user,
 //         })
 
 //         if(data) {
@@ -141,20 +138,25 @@
 //   )
 // }
 
-
-
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import {ArrowLeft,ArrowRight,User,Mail,Image as ImageIcon,Lock,Check,} from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  User,
+  Mail,
+  Image as ImageIcon,
+  Lock,
+  Check,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -168,17 +170,16 @@ export default function RegisterPage() {
   const hasLowercase = /[a-z]/.test(password);
   const hasMinLength = password.length >= 6;
 
-  const isPasswordValid =
-    hasUppercase && hasLowercase && hasMinLength;
+  const isPasswordValid = hasUppercase && hasLowercase && hasMinLength;
 
-  const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement> ) => {
+  const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isPasswordValid) {
       toast.error("Please fulfill all password requirements.");
       return;
     }
     const formData = new FormData(e.currentTarget);
-    const user = Object.fromEntries(formData.entries() ) as {
+    const user = Object.fromEntries(formData.entries()) as {
       name: string;
       image: string;
       email: string;
@@ -209,32 +210,28 @@ export default function RegisterPage() {
     }
   };
   const handleGoogleLogin = async () => {
-      try {
-        setGoogleLoading(true);
-  
-        await authClient.signIn.social({
-          provider: "google",
-          callbackURL: "/",
-        });
-      } catch {
-        toast.error("Google login failed. Please try again.");
-        setGoogleLoading(false);
-      }
-    };
+    try {
+      setGoogleLoading(true);
+
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch {
+      toast.error("Google login failed. Please try again.");
+      setGoogleLoading(false);
+    }
+  };
 
   return (
-    <main className="w-ful mx-auto min-h-screen bg-white ">
-
-      {/* LEFT BRANDING PANEL */}
-      
-
-      {/* RIGHT REGISTRATION FORM */}
-      <section className="flex min-h-screen flex-col px-6 py-8 sm:px-12 lg:justify-center lg:px-16 xl:px-20">        
+   
+    <main className="mx-auto min-h-screen w-full bg-white dark:bg-[#111111]">
+      <section className="flex min-h-screen flex-col px-6 py-8 dark:bg-[#111111] sm:px-12 lg:justify-center lg:px-16 xl:px-20">
         <div className="mx-auto w-full max-w-md">
-
           {/* Back Link */}
-          <Link href="/"
-            className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600"
+          <Link
+            href="/"
+            className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400"
           >
             <ArrowLeft className="size-4" />
             Back to home
@@ -246,28 +243,40 @@ export default function RegisterPage() {
               Join ClassicStudio
             </p>
 
-            <h2 className="text-4xl font-bold tracking-tight text-neutral-950">
+            <h2 className="text-4xl font-bold tracking-tight text-neutral-950 dark:text-white">
               Create account<span className="text-red-600">.</span>
             </h2>
 
-            <p className="mt-3 text-sm leading-6 text-neutral-500">
-              Create your account and discover spaces for your next
-              creative project.
+            <p className="mt-3 text-sm leading-6 text-neutral-500 dark:text-neutral-400">
+              Create your account and discover spaces for your next creative
+              project.
             </p>
           </div>
 
-          {/* Google Placeholder */}
-         <button
+          {/* Google Button */}
+          <button
             type="button"
             onClick={handleGoogleLogin}
             disabled={googleLoading}
-            className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3.5 text-sm font-semibold text-neutral-800 transition hover:border-red-300 hover:bg-red-50 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3.5 text-sm font-semibold text-neutral-800 transition hover:border-red-300 hover:bg-red-50 disabled:opacity-60 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-neutral-200 dark:hover:border-red-800 dark:hover:bg-red-950/20"
           >
             <svg viewBox="0 0 48 48" className="size-5">
-              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"/>
-              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.72 7.18l7.62 5.91c4.45-4.11 7.14-10.16 7.14-17.56Z"/>
-              <path fill="#FBBC05" d="M10.53 28.59a14.4 14.4 0 0 1 0-9.18l-7.98-6.19a24 24 0 0 0 0 21.56l7.98-6.19Z"/>
-              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.89l-7.62-5.91c-2.12 1.43-4.85 2.3-8.28 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z"/>
+              <path
+                fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"
+              />
+              <path
+                fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.72 7.18l7.62 5.91c4.45-4.11 7.14-10.16 7.14-17.56Z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M10.53 28.59a14.4 14.4 0 0 1 0-9.18l-7.98-6.19a24 24 0 0 0 0 21.56l7.98-6.19Z"
+              />
+              <path
+                fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.9-5.89l-7.62-5.91c-2.12 1.43-4.85 2.3-8.28 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z"
+              />
             </svg>
 
             {googleLoading ? "Connecting..." : "Continue with Google"}
@@ -275,21 +284,20 @@ export default function RegisterPage() {
 
           {/* Separator */}
           <div className="my-6 flex items-center gap-4">
-            <div className="h-px flex-1 bg-neutral-200" />
+            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
             <span className="text-xs font-medium uppercase tracking-wider text-neutral-400">
               Or register with email
             </span>
-            <div className="h-px flex-1 bg-neutral-200" />
+            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
           </div>
 
           {/* Registration Form */}
           <form onSubmit={handleEmailSignUp} className="space-y-4">
-
             {/* Name */}
             <div>
               <label
                 htmlFor="name"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
               >
                 Full name
               </label>
@@ -303,7 +311,7 @@ export default function RegisterPage() {
                   name="name"
                   placeholder="Your full name"
                   required
-                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10"
+                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:bg-[#222222]"
                 />
               </div>
             </div>
@@ -312,7 +320,7 @@ export default function RegisterPage() {
             <div>
               <label
                 htmlFor="image"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
               >
                 Photo URL
               </label>
@@ -326,7 +334,7 @@ export default function RegisterPage() {
                   name="image"
                   placeholder="https://example.com/photo.jpg"
                   required
-                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10"
+                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:bg-[#222222]"
                 />
               </div>
             </div>
@@ -335,7 +343,7 @@ export default function RegisterPage() {
             <div>
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
               >
                 Email address
               </label>
@@ -349,7 +357,7 @@ export default function RegisterPage() {
                   name="email"
                   placeholder="you@example.com"
                   required
-                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10"
+                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:bg-[#222222]"
                 />
               </div>
             </div>
@@ -358,7 +366,7 @@ export default function RegisterPage() {
             <div>
               <label
                 htmlFor="password"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
               >
                 Password
               </label>
@@ -374,23 +382,29 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10"
+                  className="h-12 rounded-xl border-neutral-200 bg-neutral-50 pl-11 text-sm focus-visible:border-red-500 focus-visible:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:bg-[#222222]"
                 />
               </div>
 
               {/* Password Requirements */}
               <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                <p className={`flex items-center gap-2 text-xs ${hasUppercase ? "text-green-600" : "text-neutral-400"}`}>
+                <p
+                  className={`flex items-center gap-2 text-xs ${hasUppercase ? "text-green-600" : "text-neutral-400"}`}
+                >
                   <Check className="size-3.5" />
                   Uppercase letter
                 </p>
 
-                <p className={`flex items-center gap-2 text-xs ${hasLowercase ? "text-green-600" : "text-neutral-400"}`}>
+                <p
+                  className={`flex items-center gap-2 text-xs ${hasLowercase ? "text-green-600" : "text-neutral-400"}`}
+                >
                   <Check className="size-3.5" />
                   Lowercase letter
                 </p>
 
-                <p className={`flex items-center gap-2 text-xs ${hasMinLength ? "text-green-600" : "text-neutral-400"}`}>
+                <p
+                  className={`flex items-center gap-2 text-xs ${hasMinLength ? "text-green-600" : "text-neutral-400"}`}
+                >
                   <Check className="size-3.5" />
                   At least 6 characters
                 </p>
@@ -409,7 +423,7 @@ export default function RegisterPage() {
           </form>
 
           {/* Login Link */}
-          <p className="mt-7 text-center text-sm text-neutral-500">
+          <p className="mt-7 text-center text-sm text-neutral-500 dark:text-neutral-400">
             Already have an account?{" "}
             <Link
               href="/Login"
@@ -421,12 +435,11 @@ export default function RegisterPage() {
 
           {/* Terms */}
           <p className="mt-8 text-center text-xs leading-6 text-neutral-400">
-            By creating an account, you agree to ClassicStudio's Terms
-            of Service and Privacy Policy.
+            By creating an account, you agree to ClassicStudio's Terms of
+            Service and Privacy Policy.
           </p>
         </div>
       </section>
     </main>
   );
 }
-

@@ -4,7 +4,14 @@ import { Pencil } from "lucide-react";
 import { Studio } from "@/lib/type";
 import { toast } from "react-toastify";
 
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -18,7 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+
 const amenitiesList = [
   "Professional Lighting",
   "Camera Equipment",
@@ -34,7 +41,6 @@ const amenitiesList = [
 
 export default function EditStudioModal({ studio }: { studio: Studio }) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,10 +67,10 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
         toast.error("Failed to update studio");
         return;
       }
-      
+
       toast.success("Studio updated successfully!");
-      
-      router.refresh();   
+
+      router.refresh();
       router.push("/my-listings");
     } catch (error) {
       console.error(error);
@@ -76,21 +82,22 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     "h-11 rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500";
 
   return (
-    <Dialog open >
-      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border-0 bg-white p-0 sm:max-w-[550px]">
+    
+    <Dialog open>
+      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-[550px]">
         {/* Header */}
-        <DialogHeader className="border-b border-gray-100 px-6 py-5 text-left">
+        <DialogHeader className="border-b border-gray-100 px-6 py-5 text-left dark:border-neutral-800">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-600">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400">
               <Pencil size={20} />
             </div>
 
             <div>
-              <DialogTitle className="text-xl font-bold text-gray-900">
+              <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white">
                 Edit Studio
               </DialogTitle>
 
-              <DialogDescription className="mt-1 text-sm text-gray-500">
+              <DialogDescription className="mt-1 text-sm text-gray-500 dark:text-neutral-400">
                 Update your studio details below.
               </DialogDescription>
             </div>
@@ -101,7 +108,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
         <form onSubmit={handleSubmit} className="space-y-5 px-6 py-6">
           {/* Studio Name */}
           <div>
-            <label className="mb-2 block text-sm font-semibold text-gray-700">
+            <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
               Studio Name
             </label>
             <Input
@@ -116,7 +123,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           <div className="space-y-1.5">
             <Label
               htmlFor="category"
-              className="text-sm font-semibold text-gray-700"
+              className="text-sm font-semibold text-gray-700 dark:text-neutral-200"
             >
               Category
             </Label>
@@ -124,7 +131,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
               <SelectTrigger id="category" className={`${inputStyle} w-full`}>
                 <SelectValue placeholder="Choose a studio category" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="border-neutral-200 bg-white dark:border-neutral-700 dark:bg-[#222222]">
                 <SelectItem value="photo-studio">Photo Studio</SelectItem>
                 <SelectItem value="film-stage">Film Stage</SelectItem>
                 <SelectItem value="podcast-lounge">Podcast Lounge</SelectItem>
@@ -139,8 +146,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           {/* Rate and Deposit */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
-                {" "}
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Hourly Rate ($)
               </label>
               <Input
@@ -153,7 +159,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Security Deposit ($)
               </label>
               <Input
@@ -169,7 +175,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           {/* Capacity and Location */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Maximum Capacity
               </label>
               <Input
@@ -182,7 +188,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Location
               </label>
               <Input
@@ -196,7 +202,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
           {/* Image URL */}
           <div>
-            <label className="mb-2 block text-sm font-semibold text-gray-700">
+            <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
               Studio Image URL
             </label>
             <Input
@@ -210,31 +216,51 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
           {/* Amenities */}
           <div className="space-y-1.5">
-            <Label className="text-sm font-semibold text-gray-700"> Amenities </Label>
-            <div className="grid grid-cols-2 gap-3"> {amenitiesList.map((amenity) => (
-                <label key={amenity} className="flex items-center gap-2 text-sm text-gray-600" >
-                  <input type="checkbox" name="amenities" value={amenity} 
-                  defaultChecked={studio.amenities?.includes(amenity)} className="accent-red-600" />
-                  {amenity} </label> ))}
+            <Label className="text-sm font-semibold text-gray-700 dark:text-neutral-200">
+              Amenities
+            </Label>
+            <div className="grid grid-cols-2 gap-3">
+              {amenitiesList.map((amenity) => (
+                <label
+                  key={amenity}
+                  className="flex items-center gap-2 text-sm text-gray-600 dark:text-neutral-300"
+                >
+                  <input
+                    type="checkbox"
+                    name="amenities"
+                    value={amenity}
+                    defaultChecked={studio.amenities?.includes(amenity)}
+                    className="accent-red-600"
+                  />
+                  {amenity}
+                </label>
+              ))}
             </div>
           </div>
+
           {/* Overview */}
           <div>
-            <label className="mb-2 block text-sm font-semibold text-gray-700"> Studio Overview </label>
-            <Textarea name="overview" defaultValue={studio.overview}
+            <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
+              Studio Overview
+            </label>
+            <Textarea
+              name="overview"
+              defaultValue={studio.overview}
               required
               rows={4}
-              className="rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500"
+              className="rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500 dark:border-neutral-700 dark:bg-[#222222] dark:text-white dark:placeholder:text-neutral-500"
             />
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-end gap-3 border-t border-gray-100 pt-5">
+          <div className="flex justify-end gap-3 border-t border-gray-100 pt-5 dark:border-neutral-800">
             <Button
               type="button"
               variant="outline"
-              className="rounded-lg px-5"
-             onClick={() => {window.location.href = "/my-listings"; }}
+              className="rounded-lg border-neutral-300 bg-white px-5 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:bg-[#222222] dark:text-neutral-200 dark:hover:bg-neutral-700"
+              onClick={() => {
+                window.location.href = "/my-listings";
+              }}
             >
               Cancel
             </Button>

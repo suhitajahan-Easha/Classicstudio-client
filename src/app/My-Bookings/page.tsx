@@ -21,7 +21,7 @@ export default async function Bookings() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-red-500">
           My Bookings
         </h1>
         <p className="mt-2 text-gray-500">

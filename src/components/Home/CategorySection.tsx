@@ -14,7 +14,7 @@ export default function CategorySection() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-8 text-center">
-        <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">Explore by <span className="text-red-600">Category</span></h2>
+        <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl dark:text-white">Explore by <span className="text-red-600">Category</span></h2>
         <p className="mt-2 text-neutral-500">Find the perfect creative space for your needs.</p>
       </div>
 

@@ -1,11 +1,10 @@
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Eye, EyeOff, Mail, Lock,} from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { toast } from "react-toastify";
 
 export default function LogInPage() {
@@ -63,13 +62,13 @@ export default function LogInPage() {
   };
 
   return (
-
-    <main className="min-h-screen w-full bg-white">
+    
+    <main className="min-h-screen w-full bg-white transition-colors duration-300 dark:bg-[#111111]">
       <section className="flex min-h-screen w-full flex-col px-4 py-6 sm:px-8 sm:py-10 lg:justify-center lg:px-12 xl:px-16">
         <div className="mx-auto w-full max-w-md">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600 sm:mb-10"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 sm:mb-10"
           >
             <ArrowLeft className="size-4 shrink-0" />
             Back to home
@@ -79,16 +78,19 @@ export default function LogInPage() {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-red-600">
               Welcome back
             </p>
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl">
               Sign in<span className="text-red-600">.</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-500">
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-500 dark:text-neutral-400">
               Enter your details to access your ClassicStudio account.
             </p>
           </div>
 
-          <button type="button" onClick={handleGoogleLogin} disabled={googleLoading}
-            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-800 transition hover:border-red-300 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60 sm:px-5"
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={googleLoading}
+            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-800 transition hover:border-red-300 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-neutral-200 dark:hover:border-red-800 dark:hover:bg-red-950/20 sm:px-5"
           >
             <svg viewBox="0 0 48 48" className="size-5 shrink-0">
               <path
@@ -114,18 +116,18 @@ export default function LogInPage() {
           </button>
 
           <div className="my-7 flex items-center gap-3 sm:my-8 sm:gap-4">
-            <div className="h-px flex-1 bg-neutral-200" />
+            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
             <span className="text-center text-[10px] font-medium uppercase tracking-wider text-neutral-400 sm:text-xs">
               Or sign in with email
             </span>
-            <div className="h-px flex-1 bg-neutral-200" />
+            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
           </div>
 
           <form onSubmit={handleEmailLogin} className="space-y-5">
             <div>
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
               >
                 Email address
               </label>
@@ -137,7 +139,7 @@ export default function LogInPage() {
                   name="email"
                   placeholder="you@example.com"
                   required
-                  className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 pl-11 pr-4 text-sm outline-none transition placeholder:text-neutral-400 focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                  className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 pl-11 pr-4 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus:bg-[#222222]"
                 />
               </div>
             </div>
@@ -146,7 +148,7 @@ export default function LogInPage() {
               <div className="mb-2 flex items-center justify-between gap-3">
                 <label
                   htmlFor="password"
-                  className="text-sm font-semibold text-neutral-800"
+                  className="text-sm font-semibold text-neutral-800 dark:text-neutral-200"
                 >
                   Password
                 </label>
@@ -165,13 +167,13 @@ export default function LogInPage() {
                   name="password"
                   placeholder="Enter your password"
                   required
-                  className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 pl-11 pr-12 text-sm outline-none transition placeholder:text-neutral-400 focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                  className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 pl-11 pr-12 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus:bg-[#222222]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 transition hover:text-neutral-700"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 transition hover:text-neutral-700 dark:hover:text-neutral-200"
                 >
                   {showPassword ? (
                     <EyeOff className="size-4" />
@@ -192,7 +194,7 @@ export default function LogInPage() {
             </button>
           </form>
 
-          <p className="mt-7 text-center text-sm leading-6 text-neutral-500 sm:mt-8">
+          <p className="mt-7 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400 sm:mt-8">
             Don't have an account?{" "}
             <Link
               href="/Register"

@@ -7,7 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem,SelectTrigger, SelectValue,} from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Plus, Trash, LoaderCircle } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
@@ -24,15 +30,16 @@ const amenitiesList = [
   "Projector",
 ];
 
-const labelClass = "text-[13px] font-medium text-[#222222]";
+
+const labelClass = "text-[13px] font-medium text-[#222222] dark:text-neutral-200";
 
 const fieldClass =
-  "h-10 rounded-md border border-[#E5E5E5] bg-white px-3 text-[13px] shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15";
+  "h-10 rounded-md border border-[#E5E5E5] bg-white px-3 text-[13px] text-neutral-900 shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:border-red-500";
 
-const AddStudiopage = () => {
-   const { data: session } = authClient.useSession();
-   const user = session?.user;
-   console.log(user?.name)
+  const AddStudiopage = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  console.log(user?.name);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -43,9 +50,7 @@ const AddStudiopage = () => {
       username: user?.name,
       email: user?.email,
       image: user?.image,
-
     };
-    
 
     const res = await fetch("http://localhost:5000/add-studio", {
       method: "POST",
@@ -63,29 +68,30 @@ const AddStudiopage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 sm:px-7">
+    
+    <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 transition-colors duration-300 dark:bg-[#111111] sm:px-7">
       <div className="mx-auto max-w-3xl">
         {/* Page Heading */}
         <div className="mb-8 text-center sm:mb-10">
           <div className="mx-auto mb-3 h-1 w-12 rounded-full bg-red-600" />
 
-          <h1 className="font-heading text-3xl font-light tracking-tight text-[#171717] sm:text-4xl">
+          <h1 className="font-heading text-3xl font-light tracking-tight text-[#171717] dark:text-white sm:text-4xl">
             Add New Studio
           </h1>
 
-          <p className="mt-3 text-sm text-[#737373]">
+          <p className="mt-3 text-sm text-[#737373] dark:text-neutral-400">
             List your creative space and share it with the community.
           </p>
         </div>
 
-        <Card className="gap-0 overflow-hidden rounded-lg border border-[#E5E5E5] bg-white py-0 shadow-sm">
+        <Card className="gap-0 overflow-hidden rounded-lg border border-[#E5E5E5] bg-white py-0 shadow-sm dark:border-neutral-800 dark:bg-[#1a1a1a]">
           <div className="h-1.5 bg-red-600" />
 
           <CardContent className="p-5 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Studio Details */}
               <section>
-                <h2 className="mb-4 text-base font-semibold text-[#171717]">
+                <h2 className="mb-4 text-base font-semibold text-[#171717] dark:text-white">
                   Studio Details
                 </h2>
 
@@ -120,13 +126,19 @@ const AddStudiopage = () => {
                       </SelectTrigger>
 
                       <SelectContent>
-                        <SelectItem value="photo-studio"> Photo Studio </SelectItem>
+                        <SelectItem value="photo-studio">
+                          Photo Studio
+                        </SelectItem>
                         <SelectItem value="film-stage">Film Stage</SelectItem>
-                        <SelectItem value="podcast-lounge"> Podcast Lounge </SelectItem>
+                        <SelectItem value="podcast-lounge">
+                          Podcast Lounge
+                        </SelectItem>
                         <SelectItem value="music-suite">Music Suite</SelectItem>
                         <SelectItem value="workshop">Workshop</SelectItem>
                         <SelectItem value="event-space">Event Space</SelectItem>
-                        <SelectItem value="Dance-studio"> Dance Studio</SelectItem>
+                        <SelectItem value="Dance-studio">
+                          Dance Studio
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -220,13 +232,13 @@ const AddStudiopage = () => {
               </section>
 
               {/* Amenities */}
-              <section className="border-t border-[#EEEEEE] pt-5">
+              <section className="border-t border-[#EEEEEE] pt-5 dark:border-neutral-800">
                 <fieldset>
-                  <legend className="text-base font-semibold text-[#171717]">
+                  <legend className="text-base font-semibold text-[#171717] dark:text-white">
                     Amenities
                   </legend>
 
-                  <p className="mb-4 mt-1 text-xs text-[#737373]">
+                  <p className="mb-4 mt-1 text-xs text-[#737373] dark:text-neutral-400">
                     Select all amenities available in your studio.
                   </p>
 
@@ -234,7 +246,7 @@ const AddStudiopage = () => {
                     {amenitiesList.map((amenity) => (
                       <label
                         key={amenity}
-                        className="flex cursor-pointer items-center gap-2.5 rounded-md border border-[#EEEEEE] bg-white px-3 py-3 text-xs text-[#404040] transition-colors hover:border-red-300 hover:bg-red-50/50"
+                        className="flex cursor-pointer items-center gap-2.5 rounded-md border border-[#EEEEEE] bg-white px-3 py-3 text-xs text-[#404040] transition-colors hover:border-red-300 hover:bg-red-50/50 dark:border-neutral-700 dark:bg-[#222222] dark:text-neutral-300 dark:hover:border-red-800 dark:hover:bg-red-950/30"
                       >
                         <input
                           type="checkbox"
@@ -251,7 +263,7 @@ const AddStudiopage = () => {
               </section>
 
               {/* Detailed Overview */}
-              <section className="border-t border-[#EEEEEE] pt-5">
+              <section className="border-t border-[#EEEEEE] pt-5 dark:border-neutral-800">
                 <div className="space-y-1.5">
                   <Label htmlFor="overview" className={labelClass}>
                     Detailed Overview <span className="text-red-600">*</span>
@@ -261,31 +273,31 @@ const AddStudiopage = () => {
                     id="overview"
                     name="overview"
                     placeholder="Describe your studio, its atmosphere, available equipment, ideal uses, and special features..."
-                    className="min-h-28 resize-y rounded-md border border-[#E5E5E5] bg-white px-3 py-3 text-[13px] shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15"
+                    className="min-h-28 resize-y rounded-md border border-[#E5E5E5] bg-white px-3 py-3 text-[13px] text-neutral-900 shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500"
                     required
                   />
                 </div>
               </section>
 
-              
-              <section className=" text-red-400">
-                <h2 className="text-base font-semibold text-[#171717]"> READ ONLY
+              {/* Read Only */}
+              <section className="text-red-400">
+                <h2 className="text-base font-semibold text-[#171717] dark:text-white">
+                  READ ONLY
                 </h2>
-                <div className=" flex gap-2 font-semibold">
-                  <h1>Name:{user?.name}</h1>
-                  <h1 >
-                    Email:{user?.email}
-                  </h1>
+
+                <div className="flex flex-wrap gap-2 font-semibold">
+                  <h1>Name: {user?.name}</h1>
+                  <h1>Email: {user?.email}</h1>
                 </div>
               </section>
 
               {/* Action Buttons */}
-              <div className="flex flex-col-reverse justify-end gap-3 border-t border-[#EEEEEE] pt-5 sm:flex-row">
+              <div className="flex flex-col-reverse justify-end gap-3 border-t border-[#EEEEEE] pt-5 dark:border-neutral-800 sm:flex-row">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={(e) => e.currentTarget.form?.reset()}
-                  className="h-10 gap-2 rounded-md border-[#E5E5E5] bg-white px-5 text-[13px] font-medium text-[#525252] hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                  className="h-10 gap-2 rounded-md border-[#E5E5E5] bg-white px-5 text-[13px] font-medium text-[#525252] hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:border-neutral-700 dark:bg-[#222222] dark:text-neutral-300 dark:hover:border-red-800 dark:hover:bg-red-950/30 dark:hover:text-red-400"
                 >
                   <Trash className="size-4" />
                   Clear Form
@@ -293,7 +305,8 @@ const AddStudiopage = () => {
 
                 <Button
                   type="submit"
-                  className="h-10 gap-2 rounded-md bg-red-600 px-5 text-[13px] font-medium text-white transition-colors hover:bg-red-700" >
+                  className="h-10 gap-2 rounded-md bg-red-600 px-5 text-[13px] font-medium text-white transition-colors hover:bg-red-700"
+                >
                   <Plus className="size-4" />
                   Add Studio
                 </Button>

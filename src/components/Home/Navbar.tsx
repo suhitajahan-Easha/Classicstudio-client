@@ -492,7 +492,7 @@ export default function Navbar() {
             <div className="hidden items-center gap-2 md:flex">
               <Link
                 href="/LogIn"
-                className="rounded-lg px-4 py-2.5 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 dark:text-white"
+                className="rounded-lg px-4 py-2.5 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-100 dark:text-white dark:hover:bg-red-600"
               >
                 Login
               </Link>
@@ -515,16 +515,16 @@ export default function Navbar() {
             }
             aria-expanded={mobileMenuOpen}
             className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800
-             dark:text-white transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 md:hidden"
+             dark:text-white transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 md:hidden dark:hover:bg-red-600"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Navigation Panel */}
+      
       {mobileMenuOpen && (
-        <div className="border-t border-neutral-200 bg-white px-4 pb-5 pt-3 shadow-lg md:hidden">
+        <div className="border-t border-neutral-200 bg-white px-4 pb-5 pt-3 shadow-lg transition-colors duration-300 dark:border-neutral-800 dark:bg-[#111111] md:hidden">
           <div className="mx-auto max-w-7xl space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -533,8 +533,8 @@ export default function Navbar() {
                 onClick={closeMobileMenu}
                 className={`flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition ${
                   isActive(link.href)
-                    ? "bg-red-50 text-red-600"
-                    : "text-neutral-700 hover:bg-neutral-50 hover:text-red-600"
+                    ? "bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400"
+                    : "text-neutral-700 hover:bg-neutral-50 hover:text-red-600 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-red-400"
                 }`}
               >
                 {link.name}
@@ -545,11 +545,11 @@ export default function Navbar() {
             ))}
 
             {!user && (
-              <div className="grid grid-cols-2 gap-3 border-t border-neutral-100 pt-4">
+              <div className="grid grid-cols-2 gap-3 border-t border-neutral-100 pt-4 dark:border-neutral-800">
                 <Link
                   href="/LogIn"
                   onClick={closeMobileMenu}
-                  className="rounded-lg border border-neutral-200 px-4 py-3 text-center text-sm font-semibold text-neutral-700 transition hover:border-red-200 hover:text-red-600"
+                  className="rounded-lg border border-neutral-200 px-4 py-3 text-center text-sm font-semibold text-neutral-700 transition hover:border-red-200 hover:text-red-600 dark:border-neutral-700 dark:text-neutral-200 dark:hover:border-red-800 dark:hover:text-red-400"
                 >
                   Login
                 </Link>
@@ -565,13 +565,13 @@ export default function Navbar() {
             )}
 
             {user && (
-              <div className="border-t border-neutral-100 pt-3">
+              <div className="border-t border-neutral-100 pt-3 dark:border-neutral-800">
                 <p className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">
                   Signed in as {user.name || "User"}
                 </p>
                 <button
                   onClick={handleSignOut}
-                  className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                  className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
                 >
                   <LogOut size={18} />
                   Logout
