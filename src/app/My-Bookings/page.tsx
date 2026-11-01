@@ -16,7 +16,7 @@ export default async function Bookings() {
   })
   const user = session?.user;
   
-  const res = await fetch(`http://localhost:5000/booking/${user?.email}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking/${user?.email}`, {
    headers:{
       authorization:` Bearer ${token}`,
     }

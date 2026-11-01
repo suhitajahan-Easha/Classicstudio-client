@@ -1,7 +1,6 @@
-
 import Link from "next/link";
 import { ArrowLeft, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 
 export default function NotFound() {
   return (
@@ -16,24 +15,26 @@ export default function NotFound() {
         </h1>
 
         <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-500 dark:text-neutral-400">
-          Sorry, the page you're looking for doesn't exist or may have been moved.
-          Let's get you back to exploring creative spaces.
+          Sorry, the page you're looking for doesn't exist or may have been
+          moved. Let's get you back to exploring creative spaces.
         </p>
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button asChild className="bg-red-600 text-white hover:bg-red-700">
-            <Link href="/">
-              <Home className="mr-2 size-4" />
-              Back to Home
-            </Link>
-          </Button>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
+          >
+            <Home className="mr-2 size-4" />
+            Back to Home
+          </Link>
 
-          <Button asChild variant="outline" className="border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-neutral-200 dark:hover:bg-neutral-800">
-            <Link href="/studios">
-              Explore Studios
-              <ArrowLeft className="ml-2 size-4 rotate-180" />
-            </Link>
-          </Button>
+          <Link
+            href="/studios"
+            className="inline-flex items-center justify-center rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-neutral-200 dark:hover:bg-neutral-800"
+          >
+            Explore Studios
+            <ArrowLeft className="ml-2 size-4 rotate-180" />
+          </Link>
         </div>
       </div>
     </main>

@@ -14,7 +14,7 @@ export default function AllStudiosPage({ category = "All" }: Props) {
 
   useEffect(() => {
     const fetchStudios = async () => {
-      const res = await fetch("http://localhost:5000/studio");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studio`);
       const data = await res.json();
       setStudios(data);
     };

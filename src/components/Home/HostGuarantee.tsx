@@ -61,7 +61,7 @@ export default function HostGuarantee() {
             return (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:border-red-500/50 hover:bg-white/[0.07]"
+                className="rounded-2xl border border-white/10 bg-white/4 p-7 transition duration-300 hover:border-red-500/50 hover:bg-white/[0.07]"
               >
                 <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-red-600/10 text-red-500">
                   <Icon className="size-6" />
@@ -80,7 +80,7 @@ export default function HostGuarantee() {
         </div>
 
         {/* Bottom message */}
-        <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-7 text-center sm:px-10">
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/4 px-6 py-7 text-center sm:px-10">
           <h3 className="text-xl font-semibold text-white">
             Focus on your creativity. We’re here to help.
           </h3>

@@ -8,7 +8,7 @@ export default async function EditStudioPage({
   const { id } = await params;
   console.log("Studio ID from URL:", id);
 
-  const res = await fetch(`http://localhost:5000/studio/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studio/${id}`);
 
   if (!res.ok) {
     return <p className="py-20 text-center">Studio not found.</p>;

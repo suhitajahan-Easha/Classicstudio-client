@@ -27,12 +27,13 @@ export function Deletebooking({ studioId }: DeleteStudioProps) {
   const handleDelete = async () => {
     try {
       setIsDeleting(true);
-      const res = await fetch(`http://localhost:5000/booking/${studioId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking/${studioId}`, {
         method: "DELETE",
       });
 
       if (!res.ok) throw new Error("Failed to delete booking");
 
+      toast.dark("Booking deleted")
       router.replace("/My-Bookings");
       router.refresh();
     } catch (error) {
@@ -56,7 +57,7 @@ export function Deletebooking({ studioId }: DeleteStudioProps) {
         }
       />
 
-      <AlertDialogContent className="max-w-[400px] rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl dark:border-neutral-800 dark:bg-[#1a1a1a]">
+      <AlertDialogContent className="max-w-100 rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl dark:border-neutral-800 dark:bg-[#1a1a1a]">
         <AlertDialogHeader className="items-center text-center">
           <div className="mb-2 flex size-16 items-center justify-center rounded-full bg-rose-50 dark:bg-rose-950/40">
             <Trash2

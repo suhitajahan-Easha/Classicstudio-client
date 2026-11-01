@@ -21,7 +21,7 @@ const StudioDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/studio/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studio/${id}`, {
     cache: "no-store",
   });
 
@@ -233,7 +233,7 @@ const StudioDetailsPage = async ({
                 your ideas to life.
               </p>
             </div>
-            <div className="flex flex-col gap-4 md:min-w-[260px]">
+            <div className="flex flex-col gap-4 md:min-w-65">
               <div className="border-b border-white/10 pb-4">
                 <span className="text-sm text-gray-400">Hourly rate</span>
                 <p className="mt-1 text-2xl font-bold">

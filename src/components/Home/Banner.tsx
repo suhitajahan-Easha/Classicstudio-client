@@ -46,13 +46,13 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="relative h-[560px] w-full overflow-hidden bg-neutral-950 sm:h-[620px] lg:h-[700px]">
+    <section className="relative h-140 w-full overflow-hidden bg-neutral-950 sm:h-155 lg:h-175">
       {slides.map((slide, index) => (
         <div key={slide.label} className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? "z-10 opacity-100" : "z-0 opacity-0"}`}>
           <Image src={slide.image} alt={slide.title} width={600} height={600} className="absolute inset-0 h-full w-full object-cover" />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/55 to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
           <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-5 sm:px-10 lg:px-16 justify-center">
             <div className="max-w-3xl text-white ">

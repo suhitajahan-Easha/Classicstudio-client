@@ -17,6 +17,7 @@ import {
 import { Plus, Trash } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -87,7 +88,7 @@ const AddStudiopage = () => {
      const {data,error}=await authClient.token()
     const token =data?.token
     try {
-      const res = await fetch("http://localhost:5000/add-studio", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-studio`, {
         method: "POST",
         headers:{
                  authorization:`Bearer ${token}`
@@ -100,6 +101,7 @@ const AddStudiopage = () => {
       }
       const result = await res.json();
       toast.success("Studio added successfully!");
+      redirect('/my-listings')
       form.reset();
   
     } catch (error) {

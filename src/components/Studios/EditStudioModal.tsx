@@ -43,6 +43,8 @@ const amenitiesList = [
 
 export default function EditStudioModal({ studio }: { studio: Studio }) {
   const router = useRouter();
+  const { data: session } = authClient.useSession();
+    const user = session?.user;
 
   // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -93,7 +95,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     const token =data?.token
 
     try {
-      const res = await fetch(`http://localhost:5000/studio/${studio._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studio/${studio._id}`, {
         method: "PATCH",
         headers:{        
               authorization:`Bearer ${token}`
@@ -119,7 +121,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
   return (
     <Dialog open>
-      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-[550px]">
+      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-137.5">
         {/* Header */}
         <DialogHeader className="border-b border-gray-100 px-6 py-5 text-left dark:border-neutral-800">
           <div className="flex items-center gap-3">
@@ -134,6 +136,8 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
               <DialogDescription className="mt-1 text-sm text-gray-500 dark:text-neutral-400">
                 Update your studio details below.
+                <h1>Host:{user?.name}</h1>
+                <h1>{user?.email}</h1>
               </DialogDescription>
             </div>
           </div>

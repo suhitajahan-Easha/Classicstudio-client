@@ -15,7 +15,7 @@ export default async function MyListings() {
   })
   const user = session?.user;
   
-  const res = await fetch(`http://localhost:5000/add-studio/${user?.email}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-studio/${user?.email}`, {
     headers:{
           authorization:` Bearer ${token}`,
         }

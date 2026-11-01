@@ -25,7 +25,7 @@ const ImageSlider = ({ images, title }: Props) => {
   };
 
   return (
-    <div className="relative h-[280px] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] sm:h-[400px] lg:h-[480px]">
+    <div className="relative h-70 w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] sm:h-100 lg:h-120">
       {studioImages.length > 0 ? (
         <Image
           src={studioImages[currentIndex]}

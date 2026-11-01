@@ -71,7 +71,7 @@ export default function AboutUs() {
             alt="Creative studio"
             width={700}
             height={500}
-            className="h-[350px] w-full object-cover sm:h-[450px]"
+            className="h-87.5 w-full object-cover sm:h-112.5"
           />
         </div>
       </div>

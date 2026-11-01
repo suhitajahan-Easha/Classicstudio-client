@@ -322,7 +322,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur-xl dark:bg-[#111111]">
-      <nav className="relative mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-4">
+      <nav className="relative mx-auto flex h-19 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-4">
         {/* Logo */}
       
         <Link href="/" className="inline-flex items-center gap-3" onClick={closeMobileMenu} >
@@ -349,7 +349,7 @@ export default function Navbar() {
             >
               {link.name}
               {isActive(link.href) && (
-                <span className="absolute bottom-0 left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-red-600" />
+                <span className="absolute bottom-0 left-1/2 h-0.75 w-5 -translate-x-1/2 rounded-full bg-red-600" />
               )}
             </Link>
           ))}

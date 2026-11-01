@@ -51,7 +51,7 @@ export default function BookingCard({ studio }: { studio: Studio }) {
           alt={studio.title}
           width={110}
           height={75}
-          className="h-[75px] w-[110px] rounded-lg object-cover"
+          className="h-18.75 w-27.5 rounded-lg object-cover"
         />
 
         <p className="text-sm text-gray-500 dark:text-neutral-400">
