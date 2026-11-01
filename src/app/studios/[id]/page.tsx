@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Link from "next/link";
 import {
   MapPin,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Studio } from "@/lib/type";
 import BookWorkspace from "@/components/Shared/BookWorkspace";
+import ImageSlider from "@/components/Shared/ImageSlider";
 
 const StudioDetailsPage = async ({
   params,
@@ -36,7 +37,6 @@ const StudioDetailsPage = async ({
   const amenities = Array.isArray(studio.amenities) ? studio.amenities : [];
 
   return (
-   
     <main className="min-h-screen bg-[#F8F9FB] px-4 py-10 dark:bg-[#111111] sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <Link
@@ -66,10 +66,10 @@ const StudioDetailsPage = async ({
         </div>
 
         {/* Studio image */}
-        <div className="relative h-[280px] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] sm:h-[400px] lg:h-[480px]">
-          {studio.imageUrl ? (
+        {/* <div className="relative h-[280px] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] sm:h-[400px] lg:h-[480px]">
+          {studio.images ? (
             <Image
-              src={studio.imageUrl}
+              src={studio.images?.[0] || "/placeholder.png"}
               alt={studio.title}
               fill
               priority
@@ -80,7 +80,8 @@ const StudioDetailsPage = async ({
               No image available
             </div>
           )}
-        </div>
+        </div> */}
+        <ImageSlider images={studio.images || []} title={studio.title} />
 
         {/* Studio information */}
         <div className="mt-10">

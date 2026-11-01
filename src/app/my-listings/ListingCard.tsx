@@ -15,7 +15,7 @@ export default function ListingCard({ studio }: { studio: Studio }) {
         </h3>
 
         <Image
-          src={studio.imageUrl}
+          src={studio.images?.[0] || "/placeholder.png"}
           alt={studio.title}
           width={110}
           height={75}

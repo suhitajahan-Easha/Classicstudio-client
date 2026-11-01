@@ -14,8 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Trash, LoaderCircle } from "lucide-react";
+import { Plus, Trash } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -30,45 +31,77 @@ const amenitiesList = [
   "Projector",
 ];
 
-
-const labelClass = "text-[13px] font-medium text-[#222222] dark:text-neutral-200";
+const labelClass =
+  "text-[13px] font-medium text-[#222222] dark:text-neutral-200";
 
 const fieldClass =
   "h-10 rounded-md border border-[#E5E5E5] bg-white px-3 text-[13px] text-neutral-900 shadow-none placeholder:text-[#A3A3A3] focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500/15 dark:border-neutral-700 dark:bg-[#1a1a1a] dark:text-white dark:placeholder:text-neutral-500 dark:focus-visible:border-red-500";
 
-  const AddStudiopage = () => {
+const AddStudiopage = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   console.log(user?.name);
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData(e.currentTarget);
+  //   const data = {
+  //     ...Object.fromEntries(formData.entries()),
+  //     amenities: formData.getAll("amenities"),
+  //     username: user?.name,
+  //     email: user?.email,
+  //     image: user?.image,
+  //   };
+
+  //   const res = await fetch("http://localhost:5000/add-studio", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+
+  //   const result = await res.json();
+  //   console.log(result);
+
+  //   console.log("Form data:", data);
+  //   console.table(data);
+  // };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+     const form = e.currentTarget;
     const formData = new FormData(e.currentTarget);
-    const data = {
-      ...Object.fromEntries(formData.entries()),
-      amenities: formData.getAll("amenities"),
-      username: user?.name,
-      email: user?.email,
-      image: user?.image,
-    };
 
-    const res = await fetch("http://localhost:5000/add-studio", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    // Get amenities as an array
+    const amenities = formData.getAll("amenities");
 
-    const result = await res.json();
-    console.log(result);
+    // Replace the original amenities fields with one JSON array
+    formData.delete("amenities");
+    formData.append("amenities", JSON.stringify(amenities));
 
-    console.log("Form data:", data);
-    console.table(data);
+    // Add user information
+    formData.append("username", user?.name || "");
+    formData.append("email", user?.email || "");
+    formData.append("image", user?.image || "");
+
+    try {
+      const res = await fetch("http://localhost:5000/add-studio", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to add studio");
+      }
+      const result = await res.json();
+      toast.success("Studio added successfully!");
+      form.reset();
+  
+    } catch (error) {
+      console.error(error);
+    }
   };
-
   return (
-    
     <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 transition-colors duration-300 dark:bg-[#111111] sm:px-7">
       <div className="mx-auto max-w-3xl">
         {/* Page Heading */}
@@ -214,7 +247,7 @@ const fieldClass =
                   </div>
 
                   {/* Image URL */}
-                  <div className="space-y-1.5">
+                  {/* <div className="space-y-1.5">
                     <Label htmlFor="imageUrl" className={labelClass}>
                       Image URL <span className="text-red-600">*</span>
                     </Label>
@@ -227,6 +260,24 @@ const fieldClass =
                       className={fieldClass}
                       required
                     />
+                  </div> */}
+                  <div className="space-y-1.5">
+                    <Label htmlFor="images" className={labelClass}>
+                      Studio Images <span className="text-red-600">*</span>
+                    </Label>
+
+                    <Input
+                      id="images"
+                      name="images"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className={fieldClass}
+                      required
+                    />
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                      You can select multiple images. Maximum 5 images.
+                    </p>
                   </div>
                 </div>
               </section>

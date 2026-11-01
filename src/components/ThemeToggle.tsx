@@ -20,10 +20,20 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="flex size-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+      className="inline-flex w-auto min-w-max flex-nowrap items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-gray-200 bg-white px-3 py-2 text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+      {theme === "dark" ? (
+        <>
+          <Sun className="size-5 shrink-0" />
+          <span>Light Mode</span>
+        </>
+      ) : (
+        <>
+          <Moon className="size-5 shrink-0" />
+          <span>Dark Mode</span>
+        </>
+      )}
     </button>
   );
 }

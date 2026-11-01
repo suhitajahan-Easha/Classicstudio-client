@@ -6,7 +6,7 @@ export type Studio = {
   securityDeposit: string;
   maxCapacity: string;
   location: string;
-  imageUrl: string;
+  images: string[];
   amenities: string[];
   overview: string;
   username:string;

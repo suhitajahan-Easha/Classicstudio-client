@@ -364,9 +364,7 @@ export default function Navbar() {
 
         {/* Right Side: Authentication / Profile */}
         <div className="flex shrink-0 items-center gap-3">
-          <h1 className="text-sm font-semibold text-red-600">
-            <ThemeToggle />
-          </h1>
+          
           {user ? (
             <Popover>
               <PopoverTrigger
@@ -505,24 +503,21 @@ export default function Navbar() {
               </Link>
             </div>
           )}
-
+           <ThemeToggle />
           {/* Mobile Menu Button */}
+          
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={
-              mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
-            className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800
-             dark:text-white transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 md:hidden dark:hover:bg-red-600"
+            className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:text-white dark:hover:bg-red-600 md:hidden"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
 
-      
       {mobileMenuOpen && (
         <div className="border-t border-neutral-200 bg-white px-4 pb-5 pt-3 shadow-lg transition-colors duration-300 dark:border-neutral-800 dark:bg-[#111111] md:hidden">
           <div className="mx-auto max-w-7xl space-y-1">
