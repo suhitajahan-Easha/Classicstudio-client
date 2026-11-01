@@ -324,22 +324,15 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur-xl dark:bg-[#111111]">
       <nav className="relative mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-4">
         {/* Logo */}
-        <Link
-          href="/"
-          onClick={closeMobileMenu}
-          className="flex shrink-0 items-center gap-2.5"
-        >
-          <div className="flex size-12 items-center justify-center rounded-xl bg-red-600 text-white shadow-sm transition hover:bg-red-500 dark:text-gray-900">
-            <Clapperboard size={26} strokeWidth={2} />
+      
+        <Link href="/" className="inline-flex items-center gap-3" onClick={closeMobileMenu} >
+          <div className="flex size-12 items-center justify-center rounded-xl bg-red-600">
+            <Clapperboard size={26} strokeWidth={2} className=" text-white" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-extrabold tracking-tight text-neutral-950 dark:text-white">
-              classic<span className="text-red-600">studio</span>
-            </span>
-            <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
-              Spaces for creators
-            </span>
-          </div>
+
+          <span className="text-2xl font-extrabold tracking-tight">
+            Classic<span className="text-red-500">Studio</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -364,7 +357,6 @@ export default function Navbar() {
 
         {/* Right Side: Authentication / Profile */}
         <div className="flex shrink-0 items-center gap-3">
-          
           {user ? (
             <Popover>
               <PopoverTrigger
@@ -503,9 +495,9 @@ export default function Navbar() {
               </Link>
             </div>
           )}
-           <ThemeToggle />
+          <ThemeToggle />
           {/* Mobile Menu Button */}
-          
+
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}

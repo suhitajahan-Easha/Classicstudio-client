@@ -8,9 +8,9 @@ import HowBookingWorks from "@/components/Home/HowBookingWorks";
 export default function Home() {
   return (
    <div>
-    {/* <Banner></Banner>
+    <Banner></Banner>
     <FeaturedStudios></FeaturedStudios>
-    <CategorySection></CategorySection> */}
+    <CategorySection></CategorySection>
     <HowBookingWorks></HowBookingWorks>
     <AboutUs></AboutUs>
     <HostGuarantee></HostGuarantee>

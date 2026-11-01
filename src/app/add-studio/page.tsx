@@ -84,10 +84,14 @@ const AddStudiopage = () => {
     formData.append("email", user?.email || "");
     formData.append("image", user?.image || "");
     
-     
+     const {data,error}=await authClient.token()
+    const token =data?.token
     try {
       const res = await fetch("http://localhost:5000/add-studio", {
         method: "POST",
+        headers:{
+                 authorization:`Bearer ${token}`
+            },
         body: formData,
       });
 

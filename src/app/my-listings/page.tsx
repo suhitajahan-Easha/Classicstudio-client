@@ -5,12 +5,20 @@ import { headers } from "next/headers";
 import { Studio } from "@/lib/type";
 
 export default async function MyListings() {
+  const jwtToken =await auth.api.getToken({
+    headers:await headers(),
+  })//jwt
+  console.log(jwtToken?.token)
+  const token=jwtToken?.token
      const session = await auth.api.getSession({
     headers:await headers()
   })
   const user = session?.user;
   
   const res = await fetch(`http://localhost:5000/add-studio/${user?.email}`, {
+    headers:{
+          authorization:` Bearer ${token}`,
+        }
     
   });
   const studios: Studio[] = await res.json();

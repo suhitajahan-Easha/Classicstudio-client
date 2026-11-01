@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Clapperboard } from "lucide-react";
+import Image from "next/image";
 
 const slides = [
   {
@@ -48,7 +49,7 @@ export default function HeroSlider() {
     <section className="relative h-[560px] w-full overflow-hidden bg-neutral-950 sm:h-[620px] lg:h-[700px]">
       {slides.map((slide, index) => (
         <div key={slide.label} className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? "z-10 opacity-100" : "z-0 opacity-0"}`}>
-          <img src={slide.image} alt={slide.title} className="absolute inset-0 h-full w-full object-cover" />
+          <Image src={slide.image} alt={slide.title} width={600} height={600} className="absolute inset-0 h-full w-full object-cover" />
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

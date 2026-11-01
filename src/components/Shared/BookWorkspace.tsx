@@ -28,7 +28,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
 
     if (!bookingDate) return;
 
-    const data = {
+    const pdata = {
       // Booking user's information
       bookedBy: user?.name,
       bookingEmail: user?.email,
@@ -42,14 +42,16 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       bookingDate,
       createdAt: new Date(),
     };
-
+     const {data,error}=await authClient.token()
+    const token =data?.token
     try {
       const res = await fetch("http://localhost:5000/booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization:`Bearer ${token}`
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(pdata),
       });
 
       if (!res.ok) {

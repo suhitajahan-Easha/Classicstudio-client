@@ -9,7 +9,7 @@ export default async function Bookings() {
    const jwtToken =await auth.api.getToken({
     headers:await headers(),
   })//jwt
-  console.log(jwtToken?.token)
+  
   const token=jwtToken?.token
      const session = await auth.api.getSession({
     headers:await headers()

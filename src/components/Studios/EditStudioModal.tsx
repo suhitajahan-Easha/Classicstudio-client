@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -88,9 +89,15 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     formData.delete("amenities");
     formData.append("amenities", JSON.stringify(amenities));
 
+     const {data,error}=await authClient.token()
+    const token =data?.token
+
     try {
       const res = await fetch(`http://localhost:5000/studio/${studio._id}`, {
         method: "PATCH",
+        headers:{        
+              authorization:`Bearer ${token}`
+            },
         body: formData,
       });
 
@@ -98,7 +105,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
         throw new Error("Failed to update studio");
       }
 
-      toast.success("Studio updated successfully!");
+      toast.dark("Studio updated successfully!");
 
       router.refresh();
       router.push("/my-listings");

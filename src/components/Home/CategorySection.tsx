@@ -22,7 +22,7 @@ export default function CategorySection() {
         {categories.map((category) => (
           <Link key={category.name} href={`/studios/category/${category.name.toLowerCase()}`} className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
             <div className="relative h-52 overflow-hidden">
-              <Image src={category.image} alt={category.name} fill className="object-cover transition duration-500 group-hover:scale-105" />
+              <Image src={category.image} alt={category.name} loading="eager" height={500} width={500}  className="object-cover transition duration-500 group-hover:scale-105" />
             </div>
             <div className="p-5">
               <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-red-600 dark:text-white">{category.name.replace("-", " ")}</h3>

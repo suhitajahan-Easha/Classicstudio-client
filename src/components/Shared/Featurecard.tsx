@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { MapPin, Star } from "lucide-react";
 import { Studio } from "@/lib/type";
+import Image from "next/image";
 
 
 
@@ -9,9 +10,11 @@ const FeatureCard = ({ studio }:{studio:Studio} ) => {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-[#1a1a1a]">
       <div className="relative h-52">
-        <img
+        <Image
           src={studio.images?.[0] || "/placeholder.png"}
           alt={studio.title}
+          height={300}
+          width={300}
           className="h-full w-full object-cover"
         />
 
