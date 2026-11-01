@@ -108,7 +108,7 @@ const StudioDetailsPage = async ({
                     Hourly rate
                   </p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    ৳{studio.hourlyRate} / hour
+                    ${studio.hourlyRate} / hour
                   </p>
                 </div>
               </div>
@@ -132,7 +132,7 @@ const StudioDetailsPage = async ({
                     Security deposit
                   </p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    ৳{studio.securityDeposit}
+                    ${studio.securityDeposit}
                   </p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ const StudioDetailsPage = async ({
               <div className="border-b border-white/10 pb-4">
                 <span className="text-sm text-gray-400">Hourly rate</span>
                 <p className="mt-1 text-2xl font-bold">
-                  ৳{studio.hourlyRate}
+                  ${studio.hourlyRate}
                   <span className="text-sm font-normal text-gray-400">
                     {" "}
                     / hour

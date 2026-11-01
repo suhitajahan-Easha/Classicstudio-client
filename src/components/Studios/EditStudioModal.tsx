@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -42,30 +43,59 @@ const amenitiesList = [
 export default function EditStudioModal({ studio }: { studio: Studio }) {
   const router = useRouter();
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData(e.currentTarget);
+
+  //   const data = {
+  //     ...Object.fromEntries(formData.entries()),
+  //     amenities: formData.getAll("amenities"),
+  //   };
+
+  //   try {
+  //     const res = await fetch(`http://localhost:5000/studio/${studio._id}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await res.json();
+
+  //     if (!res.ok) {
+  //       toast.error("Failed to update studio");
+  //       return;
+  //     }
+
+  //     toast.success("Studio updated successfully!");
+
+  //     router.refresh();
+  //     router.push("/my-listings");
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    const data = {
-      ...Object.fromEntries(formData.entries()),
-      amenities: formData.getAll("amenities"),
-    };
+    const amenities = formData.getAll("amenities");
+
+    formData.delete("amenities");
+    formData.append("amenities", JSON.stringify(amenities));
 
     try {
       const res = await fetch(`http://localhost:5000/studio/${studio._id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
-      const result = await res.json();
-
       if (!res.ok) {
-        toast.error("Failed to update studio");
-        return;
+        throw new Error("Failed to update studio");
       }
 
       toast.success("Studio updated successfully!");
@@ -77,12 +107,10 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
       toast.error("Something went wrong!");
     }
   };
-
   const inputStyle =
     "h-11 rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500";
 
   return (
-    
     <Dialog open>
       <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-[550px]">
         {/* Header */}
@@ -201,7 +229,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           </div>
 
           {/* Image URL */}
-          <div>
+          {/* <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
               Studio Image URL
             </label>
@@ -212,6 +240,37 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
               required
               className={inputStyle}
             />
+          </div> */}
+          {/* Studio Images */}
+          <div>
+            <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
+              Studio Images
+            </label>
+
+            <div className="mb-3 grid grid-cols-3 gap-3 sm:grid-cols-4">
+              {studio.images?.map((image, index) => (
+                <Image
+                  key={index}
+                  src={image}
+                  height={200}
+                  width={200}
+                  alt={`Studio image ${index + 1}`}
+                  className="h-20 w-full rounded-lg object-cover"
+                />
+              ))}
+            </div>
+
+            <Input
+              name="images"
+              type="file"
+              accept="image/*"
+              multiple
+              className={inputStyle}
+            />
+
+            <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
+              Select new images only if you want to replace the existing ones.
+            </p>
           </div>
 
           {/* Amenities */}
