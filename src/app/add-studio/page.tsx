@@ -83,7 +83,8 @@ const AddStudiopage = () => {
     formData.append("username", user?.name || "");
     formData.append("email", user?.email || "");
     formData.append("image", user?.image || "");
-
+    
+     
     try {
       const res = await fetch("http://localhost:5000/add-studio", {
         method: "POST",
@@ -101,6 +102,9 @@ const AddStudiopage = () => {
       console.error(error);
     }
   };
+  
+    
+ 
   return (
     <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 transition-colors duration-300 dark:bg-[#111111] sm:px-7">
       <div className="mx-auto max-w-3xl">

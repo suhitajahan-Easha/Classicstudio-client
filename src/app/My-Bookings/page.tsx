@@ -4,17 +4,26 @@ import { headers } from "next/headers";
 import { Studio } from "@/lib/type";
 import BookingCard from "./Bookingcard";
 
+
 export default async function Bookings() {
+   const jwtToken =await auth.api.getToken({
+    headers:await headers(),
+  })//jwt
+  console.log(jwtToken?.token)
+  const token=jwtToken?.token
      const session = await auth.api.getSession({
     headers:await headers()
   })
   const user = session?.user;
   
   const res = await fetch(`http://localhost:5000/booking/${user?.email}`, {
+   headers:{
+      authorization:` Bearer ${token}`,
+    }
     
   });
   const studios: Studio[] = await res.json();
-  
+ 
 
   
 
