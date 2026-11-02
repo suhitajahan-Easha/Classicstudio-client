@@ -33,6 +33,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 // Inside your navbar JSX:
 
 export default function Navbar() {
+  const [profileOpen, setProfileOpen] = useState(false);
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -106,10 +107,10 @@ export default function Navbar() {
         </div>
 
         {/* Right Side: Authentication / Profile */}
-        {/* <div className="flex shrink-0 items-center gap-3"> */}
+        
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3"> 
           {user ? (
-            <Popover>
+            <Popover open={profileOpen} onOpenChange={setProfileOpen}>
               <PopoverTrigger
                 render={
                   <button
@@ -198,6 +199,7 @@ export default function Navbar() {
                         <Link
                           key={item.name}
                           href={item.href}
+                          onClick={() => setProfileOpen(false)}
                           className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-neutral-50 dark:hover:bg-neutral-800"
                         >
                           <span className="flex size-9 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600 transition group-hover:bg-red-50 group-hover:text-red-600 dark:bg-neutral-800 dark:text-neutral-300 dark:group-hover:bg-red-950 dark:group-hover:text-red-400">

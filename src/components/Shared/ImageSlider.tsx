@@ -29,10 +29,9 @@ const ImageSlider = ({ images, title }: Props) => {
       {studioImages.length > 0 ? (
         <Image
           src={studioImages[currentIndex]}
-          alt={`${title} image ${currentIndex + 1}`}
-         
+          alt={`${title} image ${currentIndex + 1}`} 
           fill
-          priority
+          loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
           className="object-cover"
         />

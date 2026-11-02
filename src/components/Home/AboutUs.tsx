@@ -21,14 +21,14 @@ export default function AboutUs() {
             <span className="text-red-600"> Finds Its Space.</span>
           </h2>
 
-          <p className="mt-6 leading-7 text-neutral-600 dark:text-neutral-300">
+          <p className="mt-6 leading-7 text-neutral-600 dark:text-neutral-300 text-justify">
             ClassicStudio connects creators with inspiring spaces to bring their
             ideas to life. Whether you are a photographer, filmmaker, podcaster,
             or content creator, we help you discover a space that fits your
             vision.
           </p>
 
-          <p className="mt-4 leading-7 text-neutral-600 dark:text-neutral-300">
+          <p className="mt-4 leading-7 text-neutral-600 dark:text-neutral-300 text-justify">
             Our mission is to make finding and booking creative spaces simple,
             so you can spend less time searching and more time creating
             something amazing.
@@ -67,7 +67,7 @@ export default function AboutUs() {
         {/* Right Side - Image */}
         <div className="overflow-hidden rounded-2xl">
           <Image
-            src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb"
+            src="/music2.jpg"
             alt="Creative studio"
             width={700}
             height={500}

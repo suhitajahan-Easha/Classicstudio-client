@@ -48,7 +48,7 @@ export default function HostGuarantee() {
             <span className="text-red-600 dark:text-red-500"> Peace of Mind.</span>
           </h2>
 
-          <p className="mt-5 leading-7 text-[#806B65] dark:text-neutral-400">
+          <p className="mt-5 leading-7 text-[#806B65] dark:text-neutral-400 text-justify">
             A better creative experience starts with trust, safety, and
             reliable support for both studio hosts and creators.
           </p>

@@ -9,28 +9,28 @@ import Link from "next/link";
 
 const steps = [
   {
-    number: "StepOne",
+    number: "Step-One",
     icon: Compass,
     title: "Discover Spaces",
     description:
       "Explore creative studios and find the ideal space that matches your vision and project needs.",
   },
   {
-    number: "StepTwo",
+    number: "Step-Two",
     icon: CalendarClock,
     title: "Select Shoot Hours",
     description:
       "Check availability and choose your preferred date and shooting hours.",
   },
   {
-    number: "StepThree",
+    number: "Step-Three",
     icon: BadgeCheck,
     title: "Book Instantly",
     description:
       "Confirm your reservation and secure your chosen creative space in just a few steps.",
   },
   {
-    number: "StepFour",
+    number: "Step-Four",
     icon: Clapperboard,
     title: "Create & Produce",
     description:

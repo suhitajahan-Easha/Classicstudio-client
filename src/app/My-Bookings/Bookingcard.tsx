@@ -68,7 +68,7 @@ export default function BookingCard({ booking }: { booking: Booking }) {
       {/* Action icons and status */}
       <div className="flex flex-wrap items-center gap-2">
         <Link
-          href={`/studios/${booking._id}`}
+          href={`/studios/${booking.studioId}`}
           title="View studio"
           className="rounded-lg bg-gray-100 p-2 text-gray-700 transition hover:bg-gray-200 dark:bg-[#222222] dark:text-neutral-300 dark:hover:bg-neutral-700"
         >

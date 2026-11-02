@@ -13,6 +13,7 @@ export type Studio = {
   email:string
   rating:number;
   image:string
+ 
 };
 export type Booking = {
   _id: string;
@@ -37,4 +38,5 @@ export type Booking = {
  endTime:string,
   createdAt:string,
   status: "Pending" | "Confirmed" | "Completed" | "Cancelled";
+   studioId:string
 };
