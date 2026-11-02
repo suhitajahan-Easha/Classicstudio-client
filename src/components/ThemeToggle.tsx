@@ -26,12 +26,12 @@ export default function ThemeToggle() {
       {theme === "dark" ? (
         <>
           <Sun className="size-5 shrink-0" />
-          <span>Light Mode</span>
+          <span className=" hidden md:block">Light Mode</span>
         </>
       ) : (
         <>
           <Moon className="size-5 shrink-0" />
-          <span>Dark Mode</span>
+          <span className="hidden md:block">Dark Mode</span>
         </>
       )}
     </button>

@@ -9,17 +9,12 @@ export default function StudioCard({ studio }: { studio: Studio }) {
     <article className="group w-full max-w-85 overflow-hidden rounded-2xl border border-neutral-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800 dark:bg-[#1a1a1a] dark:hover:shadow-black/30">
       {/* Image */}
       <div className="overflow-hidden">
-        {/* <Image
-          src={studio.imageUrl}
-          alt={studio.title}
-          width={500}
-          height={350}
-          className="h-[220px] w-full object-cover transition duration-500 group-hover:scale-105"
-        /> */}
+       
        
         <Image
           src={studio.images?.[0] || "/placeholder.png"}
           alt={studio.title}
+          loading="eager"
           width={500}
           height={350}
           className="h-55 w-full object-cover transition duration-500 group-hover:scale-105"
