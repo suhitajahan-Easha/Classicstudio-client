@@ -44,11 +44,11 @@ export default function BookingCard({ booking }: { booking: Booking }) {
     }
   };
   return (
-  
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-neutral-800 dark:bg-[#1a1a1a] dark:hover:shadow-black/30">
+   
+    <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md sm:flex-row sm:items-center sm:justify-between dark:border-neutral-800 dark:bg-[#1a1a1a] dark:hover:shadow-black/30">
       {/* Studio information */}
-      <div className="flex flex-col gap-2">
-        <h3 className="font-semibold text-gray-900 dark:text-white">
+      <div className="flex min-w-0 flex-col gap-2">
+        <h3 className="wrap-break-word font-semibold text-gray-900 dark:text-white">
           {booking.title}
         </h3>
 
@@ -65,8 +65,8 @@ export default function BookingCard({ booking }: { booking: Booking }) {
         </p>
       </div>
 
-      {/* Action icons */}
-      <div className="flex items-center gap-2">
+      {/* Action icons and status */}
+      <div className="flex flex-wrap items-center gap-2">
         <Link
           href={`/studios/${booking._id}`}
           title="View studio"
@@ -74,11 +74,13 @@ export default function BookingCard({ booking }: { booking: Booking }) {
         >
           <Eye size={18} />
         </Link>
+
         <span
           className={`rounded-full px-3 py-1 text-sm ${statusColors[booking.status]}`}
         >
           {booking.status}
         </span>
+
         {booking.status === "Pending" && (
           <Button
             onClick={() => handleCancelBooking(booking._id)}

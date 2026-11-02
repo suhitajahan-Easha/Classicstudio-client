@@ -44,43 +44,9 @@ const amenitiesList = [
 export default function EditStudioModal({ studio }: { studio: Studio }) {
   const router = useRouter();
   const { data: session } = authClient.useSession();
-    const user = session?.user;
+  const user = session?.user;
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData(e.currentTarget);
-
-  //   const data = {
-  //     ...Object.fromEntries(formData.entries()),
-  //     amenities: formData.getAll("amenities"),
-  //   };
-
-  //   try {
-  //     const res = await fetch(`http://localhost:5000/studio/${studio._id}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-
-  //     const result = await res.json();
-
-  //     if (!res.ok) {
-  //       toast.error("Failed to update studio");
-  //       return;
-  //     }
-
-  //     toast.success("Studio updated successfully!");
-
-  //     router.refresh();
-  //     router.push("/my-listings");
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Something went wrong!");
-  //   }
-  // };
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -91,17 +57,20 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     formData.delete("amenities");
     formData.append("amenities", JSON.stringify(amenities));
 
-     const {data,error}=await authClient.token()
-    const token =data?.token
+    const { data, error } = await authClient.token();
+    const token = data?.token;
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studio/${studio._id}`, {
-        method: "PATCH",
-        headers:{        
-              authorization:`Bearer ${token}`
-            },
-        body: formData,
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/studio/${studio._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        },
+      );
 
       if (!res.ok) {
         throw new Error("Failed to update studio");
@@ -120,23 +89,26 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     "h-11 rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500";
 
   return (
+   
     <Dialog open>
-      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-137.5">
+      <DialogContent className="max-h-[90dvh] w-[calc(100%-1.5rem)] max-w-lg overflow-y-auto overflow-x-hidden rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:w-full sm:max-w-137.5">
         {/* Header */}
-        <DialogHeader className="border-b border-gray-100 px-6 py-5 text-left dark:border-neutral-800">
+        <DialogHeader className="border-b border-gray-100 px-4 py-4 text-left dark:border-neutral-800 sm:px-6 sm:py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400">
               <Pencil size={20} />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white">
                 Edit Studio
               </DialogTitle>
 
-              <DialogDescription className="mt-1 text-sm text-gray-500 dark:text-neutral-400">
+              <DialogDescription className="mt-1 wrap-break-word text-sm text-gray-500 dark:text-neutral-400">
                 Update your studio details below.
-                Host:{user?.name}
+                <br />
+                Host: {user?.name}
+                <br />
                 {user?.email}
               </DialogDescription>
             </div>
@@ -144,7 +116,10 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
         </DialogHeader>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5 px-6 py-6">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5 px-4 py-5 sm:px-6 sm:py-6"
+        >
           {/* Studio Name */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
@@ -183,7 +158,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           </div>
 
           {/* Rate and Deposit */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Hourly Rate ($)
@@ -212,7 +187,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           </div>
 
           {/* Capacity and Location */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
                 Maximum Capacity
@@ -239,26 +214,13 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
             </div>
           </div>
 
-          {/* Image URL */}
-          {/* <div>
-            <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
-              Studio Image URL
-            </label>
-            <Input
-              name="imageUrl"
-              type="url"
-              defaultValue={studio.imageUrl}
-              required
-              className={inputStyle}
-            />
-          </div> */}
           {/* Studio Images */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-neutral-200">
               Studio Images
             </label>
 
-            <div className="mb-3 grid grid-cols-3 gap-3 sm:grid-cols-4">
+            <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {studio.images?.map((image, index) => (
                 <Image
                   key={index}
@@ -276,7 +238,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
               type="file"
               accept="image/*"
               multiple
-              className={inputStyle}
+              className={`${inputStyle} w-full min-w-0`}
             />
 
             <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
@@ -323,11 +285,11 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-end gap-3 border-t border-gray-100 pt-5 dark:border-neutral-800">
+          <div className="flex flex-col-reverse gap-3 border-t border-gray-100 pt-5 dark:border-neutral-800 sm:flex-row sm:justify-end">
             <Button
               type="button"
               variant="outline"
-              className="rounded-lg border-neutral-300 bg-white px-5 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:bg-[#222222] dark:text-neutral-200 dark:hover:bg-neutral-700"
+              className="w-full rounded-lg border-neutral-300 bg-white px-5 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:bg-[#222222] dark:text-neutral-200 dark:hover:bg-neutral-700 sm:w-auto"
               onClick={() => {
                 window.location.href = "/my-listings";
               }}
@@ -337,7 +299,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
             <Button
               type="submit"
-              className="rounded-lg bg-red-600 px-6 text-white hover:bg-red-700"
+              className="w-full rounded-lg bg-red-600 px-6 text-white hover:bg-red-700 sm:w-auto"
             >
               Save Changes
             </Button>

@@ -1,5 +1,3 @@
-
-
 import Link from "next/link";
 import { Clapperboard, ArrowRight, Mail } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
@@ -19,16 +17,24 @@ export default function Footer() {
         {/* Brand Introduction */}
         <div className="flex flex-col gap-8 border-b border-neutral-200 py-14 md:flex-row md:items-center md:justify-between md:py-16 dark:border-white/10">
           <div>
-            <Link href="/" className="inline-flex items-center gap-3">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-red-600">
+            
+            <Link
+              href="/"
+              className="inline-flex min-w-0 shrink items-center gap-2 sm:gap-3"
+            >
+              {/* <div className="flex size-12 items-center justify-center rounded-xl bg-red-600"> */}
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-red-600 sm:size-12">
                 <Clapperboard
                   size={26}
                   strokeWidth={2}
-                  className="text-white"
+                  className=" text-white"
                 />
               </div>
 
-              <span className="text-2xl font-extrabold tracking-tight">
+              {/* <span className="text-2xl font-extrabold tracking-tight">
+                        Classic<span className="text-red-500">Studio</span>
+                      </span> */}
+              <span className="whitespace-nowrap text-lg font-extrabold tracking-tight sm:text-2xl">
                 Classic<span className="text-red-500">Studio</span>
               </span>
             </Link>
@@ -136,8 +142,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-
-           
           </div>
 
           {/* Company */}
