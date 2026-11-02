@@ -30,8 +30,7 @@ const ImageSlider = ({ images, title }: Props) => {
         <Image
           src={studioImages[currentIndex]}
           alt={`${title} image ${currentIndex + 1}`}
-          height={600}
-          width={700}
+         
           fill
           priority
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"

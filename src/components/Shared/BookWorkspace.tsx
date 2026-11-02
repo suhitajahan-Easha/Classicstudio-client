@@ -22,9 +22,11 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
 
   const handleBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+   const { _id: studioId, ...studioData } = studio;
     const formData = new FormData(e.currentTarget);
     const bookingDate = formData.get("bookingDate");
+    const startTime = formData.get("startTime");
+    const endTime = formData.get("endTime");
 
     if (!bookingDate) return;
 
@@ -35,21 +37,24 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       bookingImage: user?.image,
 
       // Studio information
-      ...studio,
+      ...studioData,
+      studioId,
       // Host's information
       hostName: studio.username,
       hostEmail: studio.email,
       bookingDate,
+      startTime,
+      endTime,
       createdAt: new Date(),
     };
-     const {data,error}=await authClient.token()
-    const token =data?.token
+    const { data, error } = await authClient.token();
+    const token = data?.token;
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization:`Bearer ${token}`
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(pdata),
       });
@@ -67,7 +72,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       console.error("Booking error:", error);
     }
   };
-  
+
   const handleOpenBooking = () => {
     if (!session?.user) {
       router.push("/LogIn");
@@ -78,7 +83,6 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
   };
 
   return (
-   
     <>
       <Button
         onClick={handleOpenBooking}
@@ -136,6 +140,37 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
                 min={new Date().toLocaleDateString("en-CA")}
                 required
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-red-500 dark:border-neutral-700 dark:bg-[#222222] dark:text-white dark:color-scheme-dark"
+              />
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="startTime"
+                className="text-sm font-medium text-neutral-800 dark:text-neutral-200"
+              >
+                Start Time
+              </label>
+              <input
+                id="startTime"
+                name="startTime"
+                type="time"
+                required
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-[#222222] dark:text-white"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="endTime"
+                className="text-sm font-medium text-neutral-800 dark:text-neutral-200"
+              >
+                End Time
+              </label>
+              <input
+                id="endTime"
+                name="endTime"
+                type="time"
+                required
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-[#222222] dark:text-white"
               />
             </div>
 

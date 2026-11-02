@@ -3,6 +3,8 @@ import ListingCard from "./ListingCard";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { Studio } from "@/lib/type";
+import Link from "next/link";
+import { Home } from "lucide-react";
 
 export default async function MyListings() {
   const jwtToken =await auth.api.getToken({
@@ -42,6 +44,12 @@ export default async function MyListings() {
           <p className="text-gray-500">
             You haven't added any studios yet.
           </p>
+          <Link href="/"
+            className="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
+          >
+            <Home className="mr-2 size-4" />
+            Back to Home
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

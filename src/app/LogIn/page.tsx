@@ -55,7 +55,7 @@ export default function LogInPage() {
         provider: "google",
         callbackURL: "/",
       });
-       toast.success("Welcome back!");
+       
     } catch {
       toast.error("Google login failed. Please try again.");
       setGoogleLoading(false);

@@ -1,8 +1,9 @@
 
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { Studio } from "@/lib/type";
+
 import BookingCard from "./Bookingcard";
+import { Booking } from "@/lib/type";
 
 
 export default async function Bookings() {
@@ -22,7 +23,7 @@ export default async function Bookings() {
     }
     
   });
-  const studios: Studio[] = await res.json();
+  const booking = await res.json();
  
 
   
@@ -37,8 +38,8 @@ export default async function Bookings() {
           Manage the creative spaces you have booked.
         </p>
       </div>
-
-      {studios.length === 0 ? (
+      
+      {booking.length === 0 ? (
         <div className="rounded-xl border border-dashed border-gray-300 py-12 text-center">
           <p className="text-gray-500">
             You haven't booked any studios yet.
@@ -46,8 +47,8 @@ export default async function Bookings() {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {studios.map((studio) => (
-            <BookingCard key={studio._id} studio={studio} />
+          {booking.map((booking:Booking) => (
+            <BookingCard key={booking._id} booking={booking} />
           ))}
         </div>
       )}
