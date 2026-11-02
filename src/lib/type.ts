@@ -12,6 +12,7 @@ export type Studio = {
   username:string;
   email:string
   rating:number;
+  image:string
 };
 export type Booking = {
   _id: string;

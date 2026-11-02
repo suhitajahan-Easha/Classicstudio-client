@@ -7,7 +7,7 @@ const categories = [
   { name: "Music-Suite", image: "/categories/music.avif", description: "Create music in professional studios" },
   { name: "Workshop", image: "/categories/workshop.avif", description: "Creative spaces for workshops" },
   { name: "Event-Space", image: "/categories/event.avif", description: "Spaces for your special events" },
-  { name: "Photo-Studio", image: "/categories/photo3.jfif", description: "Studios for Photo and Click" },
+  { name: "Photo-Studio", image: "/categories/photo4.avif", description: "Studios for Photo and Click" },
 ];
 
 export default function CategorySection() {

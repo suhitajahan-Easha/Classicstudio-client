@@ -1,8 +1,8 @@
 # ClassicStudio – Creative Studio Booking Platform
 
-**Live Website:** [Add your deployed client-side URL here]
+**Live Website:** [[Live Demo](https://classicstudio-client.vercel.app/)]
 
-ClassicStudio is a full-stack web application that allows users to explore creative studios, view studio details, and manage their studio bookings. Studio owners can manage their studio listings, while users can browse available spaces and submit booking requests through a simple and responsive interface.
+ClassicStudio is a full-stack web application that allows users to explore creative studios, view studio details, and manage their studio bookings. Studio owners can add studio, manage their studio listings, while users can browse available spaces and submit booking requests through a simple and responsive interface.
 
 ## ✨ Features
 
@@ -38,7 +38,7 @@ Follow these steps to run the project locally.
 **1. Clone the repository**
 
 ```bash
-git clone YOUR_CLIENT_REPOSITORY_URL
+git clone https://github.com/suhitajahan-Easha/Classicstudio-client.git
 ```
 
 **2. Navigate to the project directory**
@@ -58,7 +58,7 @@ npm install
 Create a `.env.local` file in the project root and add the required configuration:
 
 ```env
-NEXT_PUBLIC_API_URL=YOUR_BACKEND_API_URL
+NEXT_PUBLIC_API_URL=https://classicstudio-server.vercel.app/
 ```
 
 Add any other environment variables required by your project.
@@ -85,8 +85,8 @@ Use the following credentials to explore the application:
 
 | Field | Value |
 |---|---|
-| Email | ADD_EXAMINER_EMAIL |
-| Password | ADD_EXAMINER_PASSWORD |
+| Email | sadia@gmail.com |
+| Password | Sadia100 |
 
 **Note:** Replace these placeholders with your actual test account credentials. Do not include your personal account password.
 

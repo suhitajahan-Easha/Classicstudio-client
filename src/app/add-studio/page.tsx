@@ -74,10 +74,10 @@ const AddStudiopage = () => {
     const form = e.currentTarget;
     const formData = new FormData(e.currentTarget);
 
-    // Get amenities as an array
+   
     const amenities = formData.getAll("amenities");
 
-    // Replace the original amenities fields with one JSON array
+    
     formData.delete("amenities");
     formData.append("amenities", JSON.stringify(amenities));
 

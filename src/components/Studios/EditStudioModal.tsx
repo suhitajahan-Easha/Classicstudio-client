@@ -136,8 +136,8 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
 
               <DialogDescription className="mt-1 text-sm text-gray-500 dark:text-neutral-400">
                 Update your studio details below.
-                <h1>Host:{user?.name}</h1>
-                <h1>{user?.email}</h1>
+                Host:{user?.name}
+                {user?.email}
               </DialogDescription>
             </div>
           </div>

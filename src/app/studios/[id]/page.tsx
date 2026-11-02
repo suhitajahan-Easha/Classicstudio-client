@@ -13,6 +13,7 @@ import {
 import { Studio } from "@/lib/type";
 import BookWorkspace from "@/components/Shared/BookWorkspace";
 import ImageSlider from "@/components/Shared/ImageSlider";
+import Image from "next/image";
 
 const StudioDetailsPage = async ({
   params,
@@ -65,22 +66,7 @@ const StudioDetailsPage = async ({
           </div>
         </div>
 
-        {/* Studio image */}
-        {/* <div className="relative h-[280px] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] sm:h-[400px] lg:h-[480px]">
-          {studio.images ? (
-            <Image
-              src={studio.images?.[0] || "/placeholder.png"}
-              alt={studio.title}
-              fill
-              priority
-              className="object-cover"
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center text-gray-400 dark:text-neutral-500">
-              No image available
-            </div>
-          )}
-        </div> */}
+       
         <ImageSlider images={studio.images || []} title={studio.title} />
 
         {/* Studio information */}
@@ -186,6 +172,7 @@ const StudioDetailsPage = async ({
             <div className="mt-5 flex items-center gap-4 rounded-xl bg-white p-5 dark:bg-[#1a1a1a]">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-100 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400">
                 <UserRound size={27} />
+              
               </div>
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white">
