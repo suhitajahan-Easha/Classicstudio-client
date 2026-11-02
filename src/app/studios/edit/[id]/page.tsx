@@ -1,5 +1,6 @@
 import EditStudioModal from "@/components/Studios/EditStudioModal";
 
+
 export default async function EditStudioPage({
   params,
 }: {
@@ -18,6 +19,7 @@ export default async function EditStudioPage({
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
+      
       <EditStudioModal studio={studio} />
     </div>
   );

@@ -17,7 +17,7 @@ import {
 import { Plus, Trash } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -41,6 +41,7 @@ const fieldClass =
 const AddStudiopage = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
   console.log(user?.name);
   // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -70,7 +71,7 @@ const AddStudiopage = () => {
   // };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-     const form = e.currentTarget;
+    const form = e.currentTarget;
     const formData = new FormData(e.currentTarget);
 
     // Get amenities as an array
@@ -84,15 +85,15 @@ const AddStudiopage = () => {
     formData.append("username", user?.name || "");
     formData.append("email", user?.email || "");
     formData.append("image", user?.image || "");
-    
-     const {data,error}=await authClient.token()
-    const token =data?.token
+
+    const { data, error } = await authClient.token();
+    const token = data?.token;
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-studio`, {
         method: "POST",
-        headers:{
-                 authorization:`Bearer ${token}`
-            },
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
 
@@ -100,17 +101,14 @@ const AddStudiopage = () => {
         throw new Error("Failed to add studio");
       }
       const result = await res.json();
+
       toast.success("Studio added successfully!");
-      redirect('/my-listings')
-      form.reset();
-  
+      router.push("/my-listings");
     } catch (error) {
       console.error(error);
     }
   };
-  
-    
- 
+
   return (
     <main className="min-h-screen bg-[#FAFAFA] px-4 py-10 transition-colors duration-300 dark:bg-[#111111] sm:px-7">
       <div className="mx-auto max-w-3xl">
@@ -179,9 +177,7 @@ const AddStudiopage = () => {
                         <SelectItem value="music-suite">Music Suite</SelectItem>
                         <SelectItem value="workshop">Workshop</SelectItem>
                         <SelectItem value="event-space">Event Space</SelectItem>
-                        <SelectItem value="Dance-studio">
-                          Dance Studio
-                        </SelectItem>
+                       
                       </SelectContent>
                     </Select>
                   </div>
@@ -256,21 +252,6 @@ const AddStudiopage = () => {
                     />
                   </div>
 
-                  {/* Image URL */}
-                  {/* <div className="space-y-1.5">
-                    <Label htmlFor="imageUrl" className={labelClass}>
-                      Image URL <span className="text-red-600">*</span>
-                    </Label>
-
-                    <Input
-                      id="imageUrl"
-                      name="imageUrl"
-                      type="url"
-                      placeholder="https://example.com/studio.jpg"
-                      className={fieldClass}
-                      required
-                    />
-                  </div> */}
                   <div className="space-y-1.5">
                     <Label htmlFor="images" className={labelClass}>
                       Studio Images <span className="text-red-600">*</span>

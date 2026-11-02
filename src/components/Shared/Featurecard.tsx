@@ -24,7 +24,7 @@ const FeatureCard = ({ studio }:{studio:Studio} ) => {
 
         <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white px-2 py-1 text-sm font-semibold text-gray-800 dark:bg-[#222222] dark:text-white">
           <Star size={14} className="fill-yellow-400 text-yellow-400" />
-          4.5
+         {studio?.rating||4.5}
         </span>
       </div>
 
@@ -47,7 +47,7 @@ const FeatureCard = ({ studio }:{studio:Studio} ) => {
 
         <Link
           href={`/studios/${studio._id}`}
-          className="mt-5 block rounded-lg max-w-30 mx-auto bg-red-600 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-red-700"
+          className="mt-5 block rounded-lg  bg-red-600 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-red-700"
         >
           View Details
         </Link>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import FeatureCard from "../Shared/Featurecard";
 import { Studio } from "@/lib/type";
+import StudioCard from "../Shared/Studiocard";
 
 
 
@@ -83,22 +84,7 @@ const FeaturedStudios = () => {
           </p>
         )}
 
-        {/* {totalPages > 1 && (
-          <div className="mt-8 flex justify-center gap-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index)}
-                aria-label={`Go to page ${index + 1}`}
-                className={`h-2.5 rounded-full transition-all ${
-                  currentPage === index
-                    ? "w-7 bg-red-600"
-                    : "w-2.5 bg-gray-300 dark:bg-neutral-700"
-                }`}
-              />
-            ))}
-          </div>
-        )} */}
+       
       </div>
     </section>
   );

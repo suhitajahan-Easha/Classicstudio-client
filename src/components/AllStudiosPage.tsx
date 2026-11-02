@@ -5,6 +5,8 @@ import { Studio } from "@/lib/type";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { ArrowLeft} from "lucide-react";
+
 type Props = {
   category?: string;
 };
@@ -24,7 +26,7 @@ export default function AllStudiosPage({ category = "All" }: Props) {
 
   const selectedCategory = category=== "All" ? "All" : category.replace("category=", "");
 
-  const categories = ["All", "Film-Stage", "Podcast-Lounge", "Music-Suite", "Workshop", "Event-Space", "Dance-Studio"];
+  const categories = ["All", "Film-Stage", "Podcast-Lounge", "Music-Suite", "Workshop", "Event-Space", "photo-Studio"];
 
   const filteredStudios = selectedCategory === "All"
     ? studios
@@ -32,6 +34,13 @@ export default function AllStudiosPage({ category = "All" }: Props) {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
+      <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 sm:mb-10"
+          >
+            <ArrowLeft className="size-4 shrink-0" />
+            Back to home
+          </Link>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Explore Studios</h1>
         <p className="mt-2 text-sm text-neutral-500">Find the perfect space for your creative projects.</p>

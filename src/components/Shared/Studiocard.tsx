@@ -36,7 +36,7 @@ export default function StudioCard({ studio }: { studio: Studio }) {
 
           <div className="flex items-center gap-1 text-sm font-semibold text-neutral-800 dark:text-neutral-200">
             <Star className="size-4 fill-amber-400 text-amber-400" />
-            4.5
+            {studio?.rating||4.5}
             <span className="font-normal text-neutral-400">(Review)</span>
           </div>
         </div>

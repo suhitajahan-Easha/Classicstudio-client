@@ -39,7 +39,8 @@ export function DeletestudiolistDialog({ studioId }: DeleteStudioProps) {
 
       if (!res.ok) throw new Error("Failed to delete studio");
 
-      router.replace("/studios");
+      // router.replace("/studios");
+       router.replace("/my-listings");
       toast.dark("Deleted")
       router.refresh();
     } catch (error) {
