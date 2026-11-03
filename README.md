@@ -1,75 +1,87 @@
 # ClassicStudio – Creative Studio Booking Platform
 
-**Live Website:** [[Live Demo](https://classicstudio-client.vercel.app/)]
+**Live Website:** [ClassicStudio](https://classicstudio-client.vercel.app/)
 
-ClassicStudio is a full-stack web application that allows users to explore creative studios, view studio details, and manage their studio bookings. Studio owners can add studio, manage their studio listings, while users can browse available spaces and submit booking requests through a simple and responsive interface.
+ClassicStudio is a full-stack creative studio booking platform where users can discover and book spaces for photography, music, podcasts, workshops, events, and other creative activities. Studio owners can create and manage their studio listings, upload images, update studio information, and manage bookings through a simple and responsive interface.
 
 ## ✨ Features
 
-- **User Authentication:** Secure user authentication using JSON Web Tokens (JWT).
-- **Studio Management:** Create, read, update, and delete studio listings with CRUD functionality.
-- **Studio Discovery:** Browse studio listings and view detailed information about each studio.
-- **Booking System:** Users can submit studio booking requests and view their reservations.
-- **My Bookings:** A private page where users can view their bookings and manage pending reservations.
-- **Dark Mode:** Switch between light and dark themes for a comfortable browsing experience.
+- **Authentication:** User authentication powered by Better Auth, with JWT-based token verification for protected backend APIs.
+- **Studio Discovery:** Browse available creative studios and explore their details, images, amenities, pricing, and other information.
+- **Studio Management:** Studio owners can add, view, edit, and delete their studio listings.
+- **Image Upload:** Upload multiple studio images using ImgBB image hosting.
+- **Studio Details:** View individual studio information through dynamic routes.
+- **Booking System:** Submit booking requests by selecting a date and time.
+- **Booking Availability:** Prevent overlapping bookings for already confirmed time slots.
+- **My Bookings:** View personal booking history and manage pending reservations.
+- **Booking Cancellation:** Cancel pending booking requests.
+- **My Listings:** View and manage studios added by the logged-in studio owner.
+- **Featured Studios:** Display recently added studios on the homepage.
+- **Dark Mode:** Switch between light and dark themes.
 - **Responsive Design:** Optimized layouts for desktop, tablet, and mobile devices.
-- **User-Friendly Interface:** Clean design with intuitive navigation and interactive components.
+- **Modern UI:** Built with reusable components and interactive elements using shadcn/ui and Lucide icons.
 
 ## 🛠️ Technology Stack
 
-**Frontend**
-- Next.js
+### Frontend
+- Next.js (App Router)
 - React.js
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
 - Lucide React
+- next-themes
+- Better Auth
 
-**Backend**
+### Backend
 - Node.js
 - Express.js
 - MongoDB
 - JSON Web Token (JWT)
+- Jose
+- Multer
+- ImgBB
+- CORS
+- dotenv
 
 ## ⚙️ Local Setup
 
-Follow these steps to run the project locally.
+Follow these steps to run the frontend locally.
 
-**1. Clone the repository**
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/suhitajahan-Easha/Classicstudio-client.git
 ```
 
-**2. Navigate to the project directory**
+### 2. Navigate to the project directory
 
 ```bash
 cd classicstudio-client
 ```
 
-**3. Install dependencies**
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-**4. Configure environment variables**
+### 4. Configure environment variables
 
-Create a `.env.local` file in the project root and add the required configuration:
+Create a `.env.local` file in the project root:
 
 ```env
-NEXT_PUBLIC_API_URL=https://classicstudio-server.vercel.app/
+NEXT_PUBLIC_API_URL=https://classicstudio-server.vercel.app
 ```
 
-Add any other environment variables required by your project.
 
-**5. Start the development server**
+### 5. Start the development server
 
 ```bash
 npm run dev
 ```
 
-**6. Open the application**
+### 6. Open the application
 
 Visit:
 
@@ -77,7 +89,6 @@ Visit:
 http://localhost:3000
 ```
 
-> Make sure the backend server is running and its environment variables are configured before testing API-dependent features.
 
 ## 🧪 Examiner Test Credentials
 
@@ -88,7 +99,7 @@ Use the following credentials to explore the application:
 | Email | sadia@gmail.com |
 | Password | Sadia100 |
 
-**Note:** Replace these placeholders with your actual test account credentials. Do not include your personal account password.
+**Note:** Use only a dedicated test account. Never include your personal account password in a public repository.
 
 ## 📁 Project Structure
 
@@ -109,8 +120,8 @@ classicstudio-client/
 
 **Suhita Jahan Easha**
 
-- GitHub: https://github.com/suhitajahan-Easha
-- LinkedIn: https://www.linkedin.com/in/suhita-jahan-easha/
+- **GitHub:** [suhitajahan-Easha](https://github.com/suhitajahan-Easha)
+- **LinkedIn:** [Suhita Jahan Easha](https://www.linkedin.com/in/suhita-jahan-easha/)
 
 ---
 

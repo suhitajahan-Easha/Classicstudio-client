@@ -27,6 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -42,11 +43,11 @@ const amenitiesList = [
 ];
 
 export default function EditStudioModal({ studio }: { studio: Studio }) {
+  const [open, setOpen] = useState(true);
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -76,7 +77,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
         throw new Error("Failed to update studio");
       }
 
-      toast.dark("Studio updated successfully!");
+      toast.success("Studio updated successfully!");
 
       router.refresh();
       router.push("/my-listings");
@@ -89,8 +90,15 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
     "h-11 rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500";
 
   return (
-   
-    <Dialog open>
+    <Dialog
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (!isOpen) {
+          router.push("/my-listings");
+        }
+      }}
+    >
       <DialogContent className="max-h-[90dvh] w-[calc(100%-1.5rem)] max-w-lg overflow-y-auto overflow-x-hidden rounded-2xl border border-gray-200 bg-white p-0 dark:border-neutral-800 dark:bg-[#1a1a1a] sm:w-full sm:max-w-137.5">
         {/* Header */}
         <DialogHeader className="border-b border-gray-100 px-4 py-4 text-left dark:border-neutral-800 sm:px-6 sm:py-5">
