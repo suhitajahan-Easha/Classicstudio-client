@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Booking } from "@/lib/type";
 import { Deletebooking } from "./Deletebooking";
 import { Button } from "@/components/ui/button";

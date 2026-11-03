@@ -160,7 +160,7 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
                 <SelectItem value="music-suite">Music Suite</SelectItem>
                 <SelectItem value="workshop">Workshop</SelectItem>
                 <SelectItem value="event-space">Event Space</SelectItem>
-                <SelectItem value="Dance-studio">Dance Studio</SelectItem>
+              
               </SelectContent>
             </Select>
           </div>

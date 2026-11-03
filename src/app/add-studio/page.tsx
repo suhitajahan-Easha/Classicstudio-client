@@ -17,7 +17,7 @@ import {
 import { Plus, Trash } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import { redirect, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -43,35 +43,10 @@ const AddStudiopage = () => {
   const user = session?.user;
   const router = useRouter();
   console.log(user?.name);
-  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData(e.currentTarget);
-  //   const data = {
-  //     ...Object.fromEntries(formData.entries()),
-  //     amenities: formData.getAll("amenities"),
-  //     username: user?.name,
-  //     email: user?.email,
-  //     image: user?.image,
-  //   };
-
-  //   const res = await fetch("http://localhost:5000/add-studio", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   });
-
-  //   const result = await res.json();
-  //   console.log(result);
-
-  //   console.log("Form data:", data);
-  //   console.table(data);
-  // };
+ 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
+    
     const formData = new FormData(e.currentTarget);
 
    

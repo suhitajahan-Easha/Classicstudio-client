@@ -77,10 +77,10 @@ export default function LogInPage() {
 
           <div className="mb-8 text-center sm:mb-9">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-red-600">
-              Welcome back
+              Welcome to ClassicStudio 
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl">
-              Sign in<span className="text-red-600">.</span>
+              Login<span className="text-red-600">.</span>
             </h2>
             <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-500 dark:text-neutral-400">
               Enter your details to access your ClassicStudio account.
@@ -119,7 +119,7 @@ export default function LogInPage() {
           <div className="my-7 flex items-center gap-3 sm:my-8 sm:gap-4">
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
             <span className="text-center text-[10px] font-medium uppercase tracking-wider text-neutral-400 sm:text-xs">
-              Or sign in with email
+              Or login with email
             </span>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
           </div>
