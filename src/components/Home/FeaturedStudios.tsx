@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import FeatureCard from "../Shared/Featurecard";
 import { Studio } from "@/lib/type";
-import StudioCard from "../Shared/Studiocard";
+
 
 
 

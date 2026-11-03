@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Link from "next/link";
@@ -67,27 +65,23 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur-xl dark:bg-[#111111]">
-      
       <nav className="relative mx-auto flex h-19 max-w-7xl items-center justify-between gap-2 px-3 sm:px-6 lg:px-4">
-       
         <Link
           href="/"
           className="inline-flex min-w-0 shrink items-center gap-2 sm:gap-3"
           onClick={closeMobileMenu}
         >
-          
           <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-red-600 sm:size-12">
             <Clapperboard size={26} strokeWidth={2} className=" text-white" />
           </div>
 
-        
           <span className="whitespace-nowrap text-lg font-extrabold tracking-tight sm:text-2xl">
             Classic<span className="text-red-500">Studio</span>
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -107,8 +101,8 @@ export default function Navbar() {
         </div>
 
         {/* Right Side: Authentication / Profile */}
-        
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3"> 
+
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           {user ? (
             <Popover open={profileOpen} onOpenChange={setProfileOpen}>
               <PopoverTrigger
@@ -133,6 +127,7 @@ export default function Navbar() {
                     </span>
                     <ChevronRight className="hidden size-4 rotate-90 text-neutral-400 lg:block" />
                   </button>
+                 
                 }
               />
 
@@ -256,7 +251,7 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
-            className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:text-white dark:hover:bg-red-600 md:hidden"
+            className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:text-white dark:hover:bg-red-600 lg:hidden"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>

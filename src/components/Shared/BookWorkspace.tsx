@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 export default function BookWorkspace({ studio }: { studio: Studio }) {
   const [open, setOpen] = useState(false);
@@ -22,7 +22,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
 
   const handleBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   const { _id: studioId, ...studioData } = studio;
+    const { _id: studioId, ...studioData } = studio;
     const formData = new FormData(e.currentTarget);
     const bookingDate = formData.get("bookingDate");
     const startTime = formData.get("startTime");
@@ -64,12 +64,13 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       }
 
       const result = await res.json();
-      console.log(result);
-      toast.success("booked");
+      toast.success("Booked successfully!");
 
       setOpen(false);
+
+      router.push("/My-Bookings");
     } catch (error) {
-      console.error("Booking error:", error);
+     toast.error("Booking failed. Please try again.");
     }
   };
 
