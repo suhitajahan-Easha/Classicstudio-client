@@ -25,8 +25,9 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
     const { _id: studioId, ...studioData } = studio;
     const formData = new FormData(e.currentTarget);
     const bookingDate = formData.get("bookingDate");
-    const startTime = formData.get("startTime");
-    const endTime = formData.get("endTime");
+    // const startTime = formData.get("startTime");
+    // const endTime = formData.get("endTime");
+    const timeSlot = formData.get("timeSlot");
 
     if (!bookingDate) return;
 
@@ -43,8 +44,9 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       hostName: studio.username,
       hostEmail: studio.email,
       bookingDate,
-      startTime,
-      endTime,
+      timeSlot,
+      // startTime,
+      // endTime,
       createdAt: new Date(),
     };
     const { data, error } = await authClient.token();
@@ -59,18 +61,24 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
         body: JSON.stringify(pdata),
       });
 
-      if (!res.ok) {
-        throw new Error("Booking failed");
-      }
+      // if (!res.ok) {
+      //   throw new Error("Booking failed");
+      // }
 
       const result = await res.json();
+      if (!res.ok) {
+        toast.error(result.message || "Booking failed.");
+        return;
+      }
+
       toast.success("Booked successfully!");
 
       setOpen(false);
 
       router.push("/My-Bookings");
     } catch (error) {
-     toast.error("Booking failed. Please try again.");
+      toast.error("Booking failed. Please try again.");
+      console.log(error);
     }
   };
 
@@ -91,6 +99,7 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
       >
         Book Workspace Now
       </Button>
+     
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="w-[calc(100%-2rem)] rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-[#1a1a1a] sm:max-w-md">
@@ -112,21 +121,18 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
                 {studio.location}
               </p>
             </div>
-
             <div className="flex justify-between border-t border-neutral-200 pt-3 text-neutral-700 dark:border-neutral-700 dark:text-neutral-300">
               <span>Hourly Rate</span>
               <span className="font-semibold text-neutral-900 dark:text-white">
                 ${studio.hourlyRate}/hour
               </span>
             </div>
-
             <div className="flex justify-between text-neutral-700 dark:text-neutral-300">
               <span>Security Deposit</span>
               <span className="font-semibold text-neutral-900 dark:text-white">
                 ${studio.securityDeposit}
               </span>
             </div>
-
             <div className="space-y-2">
               <label
                 htmlFor="bookingDate"
@@ -145,36 +151,26 @@ export default function BookWorkspace({ studio }: { studio: Studio }) {
             </div>
             <div className="space-y-2">
               <label
-                htmlFor="startTime"
+                htmlFor="timeSlot"
                 className="text-sm font-medium text-neutral-800 dark:text-neutral-200"
               >
-                Start Time
+                Select Time Slot
               </label>
-              <input
-                id="startTime"
-                name="startTime"
-                type="time"
+              <select
+                id="timeSlot"
+                name="timeSlot"
                 required
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-[#222222] dark:text-white"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="endTime"
-                className="text-sm font-medium text-neutral-800 dark:text-neutral-200"
+                defaultValue=""
+                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-red-500 dark:border-neutral-700 dark:bg-[#222222] dark:text-white"
               >
-                End Time
-              </label>
-              <input
-                id="endTime"
-                name="endTime"
-                type="time"
-                required
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-[#222222] dark:text-white"
-              />
+                <option value="" disabled>
+                  Choose a time slot
+                </option>
+                <option value="11:00 AM - 1:00 PM">11:00 AM - 1:00 PM</option>
+                <option value="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</option>
+              </select>
             </div>
-
+           
             <div className="flex flex-col gap-3 pt-3">
               <Button
                 type="button"

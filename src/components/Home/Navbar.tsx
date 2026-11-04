@@ -169,8 +169,8 @@ export default function Navbar() {
                   <div className="space-y-1">
                     {[
                       {
-                        name: "Dashboard",
-                        href: "/",
+                        name: "Booking(Host)",
+                        href: "/MyStudioBooking",
                         icon: LayoutDashboard,
                       },
                       {

@@ -17,7 +17,7 @@ import {
 import { Plus, Trash } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const amenitiesList = [
   "Professional Lighting",
@@ -42,17 +42,15 @@ const AddStudiopage = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   const router = useRouter();
-  console.log(user?.name);
- 
+  // console.log(user?.name);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.currentTarget);
 
-   
     const amenities = formData.getAll("amenities");
 
-    
     formData.delete("amenities");
     formData.append("amenities", JSON.stringify(amenities));
 
@@ -152,7 +150,6 @@ const AddStudiopage = () => {
                         <SelectItem value="music-suite">Music Suite</SelectItem>
                         <SelectItem value="workshop">Workshop</SelectItem>
                         <SelectItem value="event-space">Event Space</SelectItem>
-                       
                       </SelectContent>
                     </Select>
                   </div>
@@ -296,18 +293,17 @@ const AddStudiopage = () => {
                 </div>
               </section>
 
-              {/* Read Only */}
+             
               <section className="text-red-400">
-                <h2 className="text-base font-semibold text-[#171717] dark:text-white">
-                  READ ONLY
+                <h2 className="text-xs mb-2 font-semibold text-[#171717] dark:text-white">
+                   READ ONLY
                 </h2>
-
-                <div className="flex flex-wrap gap-2 font-semibold">
-                  <h1>Name: {user?.name}</h1>
-                  <h1>Email: {user?.email}</h1>
+                <div className="flex flex-wrap gap-2">
+                  <Input value={user?.name || ""} readOnly className="h-9 w-full max-w-52 text-xs" />
+                  <Input value={user?.email || ""} readOnly className="h-9 w-full max-w-52 text-xs" />
                 </div>
               </section>
-
+              
               {/* Action Buttons */}
               <div className="flex flex-col-reverse justify-end gap-3 border-t border-[#EEEEEE] pt-5 dark:border-neutral-800 sm:flex-row">
                 <Button

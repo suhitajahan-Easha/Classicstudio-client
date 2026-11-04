@@ -160,7 +160,6 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
                 <SelectItem value="music-suite">Music Suite</SelectItem>
                 <SelectItem value="workshop">Workshop</SelectItem>
                 <SelectItem value="event-space">Event Space</SelectItem>
-              
               </SelectContent>
             </Select>
           </div>
@@ -291,6 +290,26 @@ export default function EditStudioModal({ studio }: { studio: Studio }) {
               className="rounded-lg border-gray-200 bg-gray-50 focus-visible:ring-red-500 dark:border-neutral-700 dark:bg-[#222222] dark:text-white dark:placeholder:text-neutral-500"
             />
           </div>
+
+          {/* Read Only Host Information */}
+          <section className="space-y-2">
+            <h2 className="text-xs font-semibold text-gray-900 dark:text-white">
+              READ ONLY
+            </h2>
+
+            <div className="flex flex-wrap gap-2">
+              <Input
+                value={user?.name || ""}
+                readOnly
+                className="h-9 w-full max-w-52 text-xs"
+              />
+              <Input
+                value={user?.email || ""}
+                readOnly
+                className="h-9 w-full max-w-60 text-xs"
+              />
+            </div>
+          </section>
 
           {/* Buttons */}
           <div className="flex flex-col-reverse gap-3 border-t border-gray-100 pt-5 dark:border-neutral-800 sm:flex-row sm:justify-end">
